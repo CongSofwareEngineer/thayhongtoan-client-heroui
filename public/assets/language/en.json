@@ -1,0 +1,26 @@
+{
+  "common": {
+    "claim": "Claim",
+    "startMening": "Start Memer",
+    "cancel": "Cancel",
+    "send": "Send",
+    "exchange": "Exchange",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "create": "Create",
+    "add": "Add",
+    "addMore": "Add more",
+    "stopMening": "Stop Memer",
+    "login": "Login",
+    "claimMening": "Claim profit",
+    "disconnect": "Disconnect",
+    "accept": "Accept",
+    "stop": "Stop"
+  },
+  "header":{
+    "home": "Home",
+    "context": "Context",
+    "info": "Information"
+     
+  }
+}
