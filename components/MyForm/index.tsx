@@ -3,7 +3,10 @@ import { Form, FormProps } from '@heroui/form'
 
 import { cn } from '@/utils/tailwind'
 
-const MyForm = ({ ...props }: FormProps) => {
+type Props = Omit<FormProps, 'onSubmit'> & {
+  onSubmit?: (data: any) => any
+}
+const MyForm = ({ ...props }: Props) => {
   return (
     <Form
       {...props}
@@ -12,7 +15,6 @@ const MyForm = ({ ...props }: FormProps) => {
         e.preventDefault()
         const data = Object.fromEntries(new FormData(e.currentTarget))
 
-        console.log({ data })
         if (props?.onSubmit) {
           props?.onSubmit(data)
         }
