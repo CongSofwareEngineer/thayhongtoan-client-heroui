@@ -2,16 +2,15 @@ import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 
 import MessageEN from '@/public/assets/language/en.json'
-import MessageJA from '@/public/assets/language/ja.json'
-import MessageCN from '@/public/assets/language/cn.json'
+import MessageVN from '@/public/assets/language/vn.json'
 
 export enum LANGUAGE_SUPPORT {
   EN = 'en',
-  CN = 'cn',
-  JP = 'jp',
+
+  VN = 'VN',
 }
 
-export type TYPE_LANGUAGE = typeof MessageEN
+export type TYPE_LANGUAGE = typeof MessageVN
 export type PATH_LANGUAGE<T, Prefix extends string = ''> = T extends object
   ? {
       [K in keyof T]: PATH_LANGUAGE<T[K], `${Prefix}${Prefix extends '' ? '' : '.'}${K & string}`>
@@ -29,22 +28,16 @@ type LanguageState = {
 
 const getLanguage = (language: LANGUAGE_SUPPORT): Language => {
   switch (language) {
-    case LANGUAGE_SUPPORT.CN:
+    case LANGUAGE_SUPPORT.EN:
       return {
-        locale: LANGUAGE_SUPPORT.CN,
-        messages: MessageCN,
-      }
-
-    case LANGUAGE_SUPPORT.JP:
-      return {
-        locale: LANGUAGE_SUPPORT.JP,
-        messages: MessageJA,
+        locale: LANGUAGE_SUPPORT.EN,
+        messages: MessageEN,
       }
 
     default:
       return {
-        locale: LANGUAGE_SUPPORT.EN,
-        messages: MessageEN,
+        locale: LANGUAGE_SUPPORT.VN,
+        messages: MessageVN,
       }
   }
 }
@@ -54,8 +47,8 @@ export const language = create<LanguageState>()(
     persist(
       (set) => ({
         language: {
-          locale: LANGUAGE_SUPPORT.EN,
-          messages: MessageEN,
+          locale: LANGUAGE_SUPPORT.VN,
+          messages: MessageVN,
         },
 
         setLanguage: (locale: LANGUAGE_SUPPORT) => {
@@ -69,7 +62,7 @@ export const language = create<LanguageState>()(
         onRehydrateStorage: () => (state) => {
           if (state) {
             const locale = localStorage.getItem('language') as LANGUAGE_SUPPORT
-            const language = getLanguage(locale)
+            const language = getLanguage(locale || LANGUAGE_SUPPORT.VN)
 
             state.language = language
           }

@@ -6,7 +6,10 @@ import Image, { ImageProps } from 'next/image'
 import { cn } from '@/utils/tailwind'
 import { images } from '@/config/images'
 
-const MyImage = ({ ...props }: ImageProps) => {
+type Props = {
+  noAnimation?: boolean
+} & ImageProps
+const MyImage = ({ noAnimation = false, ...props }: Props) => {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
 
@@ -21,7 +24,7 @@ const MyImage = ({ ...props }: ImageProps) => {
       className={cn('!relative overflow-hidden', props?.className)}
       src={inView ? props.src : 'https://res.cloudinary.com/tc-store/image/upload/w_100/v1734883048/tc-store/bgWhiteBlur_yxlqi7.png'}
       style={{
-        filter: loaded ? 'none' : 'blur(20px)',
+        filter: loaded || noAnimation ? 'none' : 'blur(20px)',
         transition: 'filter 0.08s ease-out',
         ...props.style,
       }}

@@ -22,6 +22,16 @@ const nextConfig = {
   },
   reactStrictMode: true,
   cleanDistDir: true,
+   redirects: async () => {
+    return [
+      {
+        source: '/',
+        destination: '/home',
+        permanent: false, // Set to true if you want a 308 permanent redirect
+      },
+      
+    ]
+  },
 };
 
 module.exports = nextConfig;

@@ -15,9 +15,25 @@ const Modal2 = () => {
     }
   }, [modal2])
 
+  useEffect(() => {
+    if (modal2?.open && modal2.maskClose) {
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape' || e.keyCode === 27) {
+          closeModal()
+        }
+      }
+
+      window.addEventListener('keydown', handleKeyDown)
+    }
+
+    return () => {
+      window.removeEventListener('keydown', () => {})
+    }
+  }, [modal2, closeModal])
+
   const onClick = (event: any) => {
     if (event.target === event.currentTarget) {
-      if (modal2.overClickClose) {
+      if (modal2.maskClose) {
         closeModal(true)
       }
     }
@@ -73,7 +89,7 @@ const Modal2 = () => {
     }
   }
 
-  return (
+  return modal2?.open ? (
     <div
       className={cn(
         'fixed  flex justify-center items-center flex-col inset-0 w-[100dvw] h-[100dvh] bg-black/20 ',
@@ -99,9 +115,11 @@ const Modal2 = () => {
           </div>
         )}
         {modal2.title && <div className='text-medium mb-2 font-bold w-full'>{modal2.title}</div>}
-        {modal2.body}
+        {modal2.content}
       </div>
     </div>
+  ) : (
+    <></>
   )
 }
 

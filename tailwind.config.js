@@ -1,4 +1,5 @@
 import {heroui} from "@heroui/theme"
+import plugin from 'tailwindcss/plugin'
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -27,10 +28,31 @@ const config = {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
       },
+      
     },
   },
   darkMode: "class",
-  plugins: [heroui()],
+  plugins: [
+    heroui({theme: 'light'}),
+    plugin(function ({ addUtilities }) {
+      const newUtilities = {
+        '.text-title': {
+          fontFamily: 'var(--font-title) !important',
+          fontSize: '40px',
+          fontWeight: '700',
+        },
+        '.text-medium': {},
+        '.text-common': {},
+        '.absolute-center': {},
+        '.skeleton-loading': {},
+        '.bg-red-linear': {
+          background: 'linear-gradient(270deg, #FF535F 0%, #A91325 100%)',
+        },
+      }
+
+      addUtilities(newUtilities)
+    }),
+  ],
 }
 
 module.exports = config;

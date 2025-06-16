@@ -1,5 +1,5 @@
 'use client'
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, Suspense } from 'react'
 import { ToastContainer } from 'react-toastify'
 import dynamic from 'next/dynamic'
 
@@ -19,7 +19,7 @@ const Modal2 = dynamic(() => import('../Modal2'), {
 
 const ClientRender = ({ children }: PropsWithChildren) => {
   return (
-    <>
+    <Suspense>
       <Header />
       <main className='w-full h-full min-h-[calc(100vh-56px)]  '>
         {children}
@@ -31,7 +31,7 @@ const ClientRender = ({ children }: PropsWithChildren) => {
         <ToastContainer position='top-right' style={{ marginTop: 10 }} />
       </main>
       <footer className='bg-green-800'>Footer</footer>
-    </>
+    </Suspense>
   )
 }
 

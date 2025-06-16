@@ -3,17 +3,18 @@ import { devtools } from 'zustand/middleware'
 
 import { ZUSTAND } from '@/constants/zustand'
 
-interface Modal2 {
+type Modal2 = {
   open?: boolean
-  body?: React.ReactNode
+  content?: React.ReactNode
   className?: string
-  classNameContent?: string
-  width?: string
-  height?: string
-  callBackAfter?: (param?: any) => any
+  style?: React.CSSProperties
+  classNameRoot?: string
+  styleRoot?: React.CSSProperties
+  afterClose?: (param?: any) => any
+  onClose?: (param?: any) => any
   title?: React.ReactNode
   showBtnClose?: boolean
-  overClickClose?: boolean
+  maskClose?: boolean
   position?: 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
 }
 
@@ -29,21 +30,22 @@ export const modal2 = create<ModalState>()(
         open: false,
       },
       openModal: (param: Modal2) => {
-        set({
+        set((state) => ({
           [ZUSTAND.Modal2]: {
             showBtnClose: true,
+            maskClose: true,
             position: 'center',
-            overClickClose: true,
+            ...state,
             ...param,
             open: true,
           },
-        })
+        }))
       },
       closeModal: (isIconClose: boolean = false) => {
         set((state) => {
           if (!isIconClose) {
-            if (state?.[ZUSTAND.Modal2]?.callBackAfter) {
-              state?.[ZUSTAND.Modal2].callBackAfter()
+            if (state?.[ZUSTAND.Modal2]?.afterClose) {
+              state?.[ZUSTAND.Modal2].afterClose()
             }
           }
 

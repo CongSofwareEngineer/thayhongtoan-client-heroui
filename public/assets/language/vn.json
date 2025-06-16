@@ -1,0 +1,61 @@
+{
+  "name": "Tên",
+  "placeholder": {
+    "enterContent": "Nhập nội dung",
+    "enterName": "Nhập họ tên",
+    "enterNumberPhone": "Nhập số điện thoại",
+    "enterLinkFace": "Nhập link facebook của bạn (không bắt buộc)",
+    "enterGmail": "Nhập gmail (không bắt buộc)",
+    "enterAddress": "Nhập địa chỉ nhà (shipper ship hàng)"
+  },
+  "warning": {
+    "passAgain": "Mật khẩu nhập lại không đúng",
+    "noData": "Sản phẩm đang cập nhật",
+    "inValidPassWordAgain": "Mật khẩu không đúng",
+    "errorUserName": "Tên không được để trống",
+    "exitNumberPhone": "Số điện thoại đã đăng ký",
+    "errorSDT": "Số điện thoại chưa đúng định dạng",
+    "errorAddress": "Địa chỉ bắt buộc phải có",
+    "unPayMent": "Húy thanh toán",
+    "errorLogin": "Sai SĐT hoặc mật khẩu",
+    "unPayMent_des": "Nếu bản hủy sẽ không thanh toán đơn hàng này được !",
+    "doYouWantDetele": "Bạn có muốn xóa?",
+    "maxSizeFile": "File dụng lượng lớn hơn {size}"
+  },
+  "errors": {
+    "create": "Tạo mới Thất bại",
+    "update": "Cập nhật thất bại",
+    "notEnoughGas": "Not enough gas fee",
+    "deniedTransaction": "Error: User denied process",
+    "somethingWrong": "Something went wrong with your transaction. Please wait a minute and try again.",
+    "insufficientBalance": "Insufficient balance",
+    "invalidAddress": "Invalid ID (42 characters start with 0x)",
+    "numberMustGreaterThanZero": "The number must be greater than zero!",
+    "numberMustGreaterThan": "The number must be greater than [number]!",
+    "noLogin": "Are you sure you want to proceed?",
+    "txtNoLogin": "register (Sign in)",
+    "notAllowed": "You are not allowed to create NFT",
+    "pageNotFound": "PAGE NOT FOUND",
+    "changeRpc": "Error Contract or Back-end, front-end",
+    "largerImage": "Ảnh có dung lượng qúa 5MB",
+    "passChanged": "Bạn đã đổi mật khẩu",
+    "loginAgain": "Đăng nhập lại",
+    "gmail": "Gamil chưa đúng định dạng",
+    "noInCorrectFormat": "Chưa đúng định dạng",
+    "empty": "Không được để trống",
+    "file": "File chưa đúng định dạng",
+    "existFile": "File đã tồn tại",
+    "invalidPass": "Mật khẩu chưa mã độc",
+    "inValueNumber": "Không phải là số",
+    "minimumPass": "Mật khảu tối thiểu 4 ký tự",
+    "minimumText": "Tối thiểu 4 ký tự",
+    "pinCode": "Pin code sai",
+    "maxNameUser": "Tên không quá 24 ký tự"
+  },
+  "header": {
+    "home": "Trang chủ",
+    "context": "Context",
+    "contact": "Liên hệ",
+    "info": "Thông tin"
+  }
+}

@@ -22,8 +22,12 @@ export function HeroUIProvider({ children, themeProps }: ProvidersProps) {
   const router = useRouter()
 
   return (
-    <Provider navigate={router.push}>
+    <>
       <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
-    </Provider>
+
+      <Provider navigate={router.push}>
+        <></>
+      </Provider>
+    </>
   )
 }

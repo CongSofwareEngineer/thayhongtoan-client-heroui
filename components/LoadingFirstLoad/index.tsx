@@ -1,7 +1,7 @@
 import React from 'react'
 import { Spinner } from '@heroui/spinner'
 
-import useClient from '@/hooks/useHydrate'
+import useClient from '@/hooks/useClient'
 
 const LoadingFirstLoad = () => {
   const isClient = useClient()

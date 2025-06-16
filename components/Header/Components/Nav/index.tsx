@@ -44,9 +44,9 @@ const Nav = () => {
 
           <span>{translate('header.home')}</span>
         </Link>
-        <Link className='flex items-center gap-2' href={'/context'}>
+        <Link className='flex items-center gap-2' href={'/contact'}>
           {isMobile && <AiFillContacts />}
-          <span>{translate('header.context')}</span>
+          <span>{translate('header.contact')}</span>
         </Link>
         <Link className='flex items-center gap-2' href={'/info'}>
           {isMobile && <IoIosInformationCircleOutline />}
