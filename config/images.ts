@@ -1,12 +1,11 @@
 export const images = {
+  favicon: '/favicon.ico',
+  logo: '/logo_tc_store.png',
   icons: {
-    avatarDefault: '/assets/images/icons/avatarDefault.png',
-    iconZalo: '/assets/images/icons/iconZalo.png',
+    avatarDefault: '/assets/images/Icons/avatarDefault.png',
+    iconZalo: '/assets/images/Icons/iconZalo.png',
   },
-}
-
-export const imageConfig = {
   home: {
-    bg: '/images/Home/bg.webp',
+    banner: '/assets/images/Home/banner.webp',
   },
 }

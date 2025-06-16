@@ -6,6 +6,7 @@
     "enterNumberPhone": "Nhập số điện thoại",
     "enterLinkFace": "Nhập link facebook của bạn (không bắt buộc)",
     "enterGmail": "Nhập gmail (không bắt buộc)",
+    "enterPassWord": "Nhập mật khẩu",
     "enterAddress": "Nhập địa chỉ nhà (shipper ship hàng)"
   },
   "warning": {
@@ -57,5 +58,10 @@
     "context": "Context",
     "contact": "Liên hệ",
     "info": "Thông tin"
+  },
+  "login":{
+    "login": "Đăng nhập",
+    "password":"Mật khảu",
+    "saveLogin": "Lưu đăng nhập"
   }
 }

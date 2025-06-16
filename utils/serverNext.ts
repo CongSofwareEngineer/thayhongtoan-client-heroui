@@ -1,3 +1,5 @@
+import { SITE_CONFIG } from '@/config/site'
+
 export const generateMetaBase = ({
   dataBase,
   title = null,
@@ -16,11 +18,11 @@ export const generateMetaBase = ({
   const dataClone = JSON.parse(JSON.stringify(dataBase))
 
   if (title) {
-    dataClone.title = override ? title : `${process.env.NEXT_PUBLIC_TITLE} | ${title}`
-    dataClone.openGraph.title = override ? title : `${process.env.NEXT_PUBLIC_TITLE} | ${title}`
-    dataClone.openGraph.siteName = override ? title : `${process.env.NEXT_PUBLIC_TITLE} | ${title}`
-    dataClone.twitter.title = override ? title : `${process.env.NEXT_PUBLIC_TITLE} | ${title}`
-    dataClone.appleWebApp.title = override ? title : `${process.env.NEXT_PUBLIC_TITLE} | ${title}`
+    dataClone.title.absolute = override ? title : `${SITE_CONFIG.title} | ${title}`
+    dataClone.openGraph.title = override ? title : `${SITE_CONFIG.title} | ${title}`
+    dataClone.openGraph.siteName = override ? title : `${SITE_CONFIG.title} | ${title}`
+    dataClone.twitter.title = override ? title : `${SITE_CONFIG.title} | ${title}`
+    dataClone.appleWebApp.title = override ? title : `${SITE_CONFIG.title} | ${title}`
   }
 
   if (des) {

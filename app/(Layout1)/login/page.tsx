@@ -1,7 +1,7 @@
 import React from 'react'
 import { ResolvingMetadata } from 'next'
 
-import ContactScreen from './client'
+import LoginScreen from './client'
 
 import { generateMetaBase } from '@/utils/serverNext'
 export async function generateMetadata(_: any, parent: ResolvingMetadata) {
@@ -9,13 +9,13 @@ export async function generateMetadata(_: any, parent: ResolvingMetadata) {
 
   const metaData = generateMetaBase({
     dataBase,
-    title: 'Thày Hồng Toán | Liên Hệ',
+    title: 'Thày Hồng Toán | Đăng nhập',
   })
 
   return metaData
 }
-const ContactPage = () => {
-  return <ContactScreen />
+const LoginPage = () => {
+  return <LoginScreen />
 }
 
-export default ContactPage
+export default LoginPage

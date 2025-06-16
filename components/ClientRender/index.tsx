@@ -30,7 +30,6 @@ const ClientRender = ({ children }: PropsWithChildren) => {
 
         <ToastContainer position='top-right' style={{ marginTop: 10 }} />
       </main>
-      <footer className='bg-green-800'>Footer</footer>
     </Suspense>
   )
 }

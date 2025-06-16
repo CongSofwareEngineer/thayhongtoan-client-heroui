@@ -1,10 +1,11 @@
-import '@/styles/globals.css'
+import '@/styles/globals.scss'
 import '@/styles/aos.css'
+import '@/styles/overrides.scss'
 import { Metadata, Viewport } from 'next'
 import clsx from 'clsx'
 
-import { siteConfig } from '@/config/site'
-import { fontSans } from '@/config/fonts'
+import { SITE_CONFIG } from '@/config/site'
+import { robotoSlab } from '@/config/fonts'
 import ClientRender from '@/components/ClientRender'
 import ReactQueryProvider from '@/components/ReactQueryProvider'
 import StyledComponentsRegistry from '@/components/StyledComponentsRegistry'
@@ -12,27 +13,66 @@ import { HeroUIProvider } from '@/components/HeroUIProvider'
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
+    default: SITE_CONFIG.title,
+    template: `%s - ${SITE_CONFIG.title}`,
   },
-  description: siteConfig.description,
+  description: SITE_CONFIG.description,
+  keywords: SITE_CONFIG.keywords,
+
+  openGraph: {
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.description,
+    images: SITE_CONFIG.images,
+    siteName: SITE_CONFIG.title,
+    url: SITE_CONFIG.url,
+    phoneNumbers: ['+84344798392'],
+    locale: 'vi',
+    emails: 'hodiencong2000@gmail.com',
+    countryName: 'Vietnamese',
+  },
+  bookmarks: SITE_CONFIG.url,
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  applicationName: SITE_CONFIG.title,
   icons: {
-    icon: '/favicon.ico',
+    icon: { url: SITE_CONFIG.icon },
+    shortcut: { url: SITE_CONFIG.icon },
+    apple: { url: SITE_CONFIG.icon },
+  },
+  manifest: '/manifest.json',
+  twitter: {
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.description,
+    card: 'summary_large_image',
+    images: SITE_CONFIG.images,
+    site: SITE_CONFIG.url,
+  },
+  appleWebApp: {
+    title: SITE_CONFIG.title,
+    capable: true,
   },
 }
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
+  themeColor: 'white',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  viewportFit: 'cover',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html suppressHydrationWarning lang='en'>
       <head />
-      <body className={clsx(fontSans.variable)}>
+      <body className={clsx(robotoSlab.variable)}>
         <ReactQueryProvider>
           <StyledComponentsRegistry>
             <ClientRender>

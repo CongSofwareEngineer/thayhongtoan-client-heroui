@@ -1,11 +1,6 @@
-import { Fira_Code as FontMono, Inter as FontSans } from 'next/font/google'
+import { Roboto_Slab as RobotoSlab } from 'next/font/google'
 
-export const fontSans = FontSans({
+export const robotoSlab = RobotoSlab({
   subsets: ['latin'],
-  variable: '--font-sans',
-})
-
-export const fontMono = FontMono({
-  subsets: ['latin'],
-  variable: '--font-mono',
+  variable: '--font-roboto-slab',
 })
