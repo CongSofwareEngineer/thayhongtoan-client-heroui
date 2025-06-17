@@ -60,34 +60,38 @@ const config = {
           colors: {
             default: {
               DEFAULT: "#2c724c",
+               foreground:'#ffffff'
             },
             primary: {
-              DEFAULT: "#2c724c",
+              DEFAULT: "#fcd34d",
+              foreground:'#000000'
             },
             secondary: {
-              DEFAULT: "#2c724c",
+              DEFAULT: "#ff4343",
+              foreground:'#000000'
             },
             success: {
               DEFAULT: "#2c724c",
             },
           },
         },
-        dark: {
-          colors: {
-            default: {
-              DEFAULT: "#2c724c",
-            },
-            primary: {
-              DEFAULT: "#2c724c",
-            },
-            secondary: {
-              DEFAULT: "#2c724c",
-            },
-            success: {
-              DEFAULT: "#2c724c",
-            },
-          },
-        },
+        // dark: {
+        //   colors: {
+        //     default: {
+        //       DEFAULT: "#2c724c",
+        //     },
+        //     primary: {
+        //       DEFAULT: "#fcd34d",
+        //       foreground:'#000000'
+        //     },
+        //     secondary: {
+        //       DEFAULT: "#2c724c",
+        //     },
+        //     success: {
+        //       DEFAULT: "#2c724c",
+        //     },
+        //   },
+        // },
       },
     }),
     plugin(function ({ addUtilities }) {

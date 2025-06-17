@@ -75,9 +75,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={clsx(robotoSlab.variable)}>
         <ReactQueryProvider>
           <StyledComponentsRegistry>
-            <ClientRender>
-              <HeroUIProvider themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>{children}</HeroUIProvider>
-            </ClientRender>
+            <HeroUIProvider themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
+              <ClientRender>{children}</ClientRender>
+            </HeroUIProvider>
           </StyledComponentsRegistry>
         </ReactQueryProvider>
       </body>

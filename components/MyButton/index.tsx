@@ -1,22 +1,12 @@
 import { Button, ButtonProps } from '@heroui/button'
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
 
 type props = {
-  onClick?: (value?: any) => any
+  onClick?: MouseEventHandler<HTMLButtonElement>
 } & ButtonProps
-const MyButton = ({ onClick = () => {}, ...props }: props) => {
-  return (
-    <Button
-      {...props}
-      color='default'
-      onPress={(e) => {
-        if (props?.onPress) {
-          props?.onPress(e)
-        }
-        onClick()
-      }}
-    />
-  )
+
+const MyButton = ({ ...props }: props) => {
+  return <Button color='default' {...props} />
 }
 
 export default MyButton
