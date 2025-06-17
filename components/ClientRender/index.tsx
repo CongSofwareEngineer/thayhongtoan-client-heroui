@@ -7,6 +7,7 @@ import Header from '../Header'
 // import MyModal from '../MyModal'
 import LoadingFirstLoad from '../LoadingFirstLoad'
 import MyDrawer from '../MyDrawer'
+import Footer from '../Footer'
 // import Modal2 from '../Modal2'
 
 const MyModal = dynamic(() => import('../MyModal'), {
@@ -30,6 +31,7 @@ const ClientRender = ({ children }: PropsWithChildren) => {
 
         <ToastContainer position='top-right' style={{ marginTop: 10 }} />
       </main>
+      <Footer />
     </Suspense>
   )
 }

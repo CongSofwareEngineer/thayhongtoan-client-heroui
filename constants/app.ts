@@ -10,6 +10,6 @@ export enum LINK_CONTACT {
   FaceBook = 'https://www.facebook.com/toantuduysoroban.thayhong/photos',
   Github = 'https://github.com/CongSofwareEngineer',
   SDT = 'tel:+84344798392',
-  Mail = 'mailto:hodiencong2000.@gmail.com',
-  GGMap = 'https://www.google.com/maps/place/83%2F41+Ph%E1%BA%A1m+V%C4%83n+B%E1%BA%A1ch,+Ph%C6%B0%E1%BB%9Dng+15,+T%C3%A2n+B%C3%ACnh,+H%E1%BB%93+Ch%C3%AD+Minh,+Vietnam/@10.8169953,106.6286017,17z/data=!3m1!4b1!4m6!3m5!1s0x317529d60f102fe1:0x48a05f8f5cd877f6!8m2!3d10.8169953!4d106.6334726!16s%2Fg%2F11l5hwgmt7?entry=ttu',
+  Mail = 'mailto:hodienhong8392@gmail.com',
+  GGMap = 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d245.27946055157543!2d104.47439031761917!3d10.38408607257531!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109db6752fd6d67%3A0xfdc817d347739de1!2zTmjDoCB0cuG7jSBiw6xuaCBkw6JuIFRoYW5oIER1eQ!5e0!3m2!1sen!2s!4v1750173449168!5m2!1sen!2s',
 }
