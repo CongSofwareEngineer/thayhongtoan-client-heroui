@@ -3,6 +3,7 @@
 import InfoHome from './Conponent/InfoHome'
 import SocialMedia from './Conponent/SocialMedia'
 
+import MyBlog from '@/components/MyBlog'
 import MyImage from '@/components/MyImage'
 import { images } from '@/config/images'
 
@@ -11,10 +12,6 @@ interface Form {
   age?: number
 }
 
-interface FormError {
-  name?: string
-  age?: string
-}
 function HomeScreen() {
   return (
     <div className='w-full h-full  flex flex-col items-center justify-center '>
@@ -25,6 +22,7 @@ function HomeScreen() {
       </div>
       <InfoHome />
       <SocialMedia />
+      <MyBlog value={'{}'} />
     </div>
   )
 }

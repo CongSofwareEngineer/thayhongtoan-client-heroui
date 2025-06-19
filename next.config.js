@@ -37,6 +37,11 @@ const nextConfig = {
       
     ]
   },
+  experimental:{
+    gzipSize: true,
+    optimizeCss: true,
+    turbopackMinify: true,
+  }
 };
 
 module.exports = nextConfig;

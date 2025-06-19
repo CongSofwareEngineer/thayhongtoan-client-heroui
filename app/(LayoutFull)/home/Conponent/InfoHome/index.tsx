@@ -1,12 +1,9 @@
 import Image from 'next/image'
 import React from 'react'
 
-import useAos from '@/hooks/useAos'
 import { images } from '@/config/images'
 
 const InfoHome = () => {
-  useAos()
-
   const renderItem = (image: string, title: string, des: string) => {
     return (
       <div className='flex gap-4 flex-1 items-center justify-center ' data-aos='zoom-in'>
