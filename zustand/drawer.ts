@@ -23,17 +23,20 @@ export const drawer = create<DrawerState>()(
         set({
           [ZUSTAND.Drawer]: {
             placement: 'bottom',
+
             ...param,
             isOpen: true,
           },
         })
       },
       closeDrawer: () => {
-        const Drawer = get()[ZUSTAND.Drawer]
+        const drawer = get()[ZUSTAND.Drawer]
 
-        Drawer.callBackAfter && Drawer.callBackAfter()
+        drawer.callBackAfter && drawer.callBackAfter()
         const init = {
           [ZUSTAND.Drawer]: {
+            ...drawer,
+            children: null,
             isOpen: false,
           },
         }

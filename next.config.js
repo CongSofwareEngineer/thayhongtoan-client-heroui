@@ -27,7 +27,12 @@ const nextConfig = {
       },
     ];
   },
-};
+  compiler:{
+     styledComponents: {
+      displayName: true,
+      ssr: true, 
+    },
+  }};
 if (process.env.NEXT_PUBLIC_BUILD) {
   console.log("building for production");
 

@@ -18,6 +18,7 @@ const MyDrawer = () => {
   return (
     <Drawer
       {...drawer}
+      key={`drawer-${drawer?.isOpen}`}
       className='Drawer'
       onOpenChange={(open) => {
         if (open === false) {
@@ -28,7 +29,9 @@ const MyDrawer = () => {
         }
       }}
     >
-      <DrawerContent className='DrawerContent'>
+      <DrawerContent
+        className={cn('w-[70vw]', drawer?.placement === 'bottom' || drawer?.placement === 'top' ? ' ' : 'rounded-none', drawer?.classNames?.base)}
+      >
         {drawer?.title && <DrawerHeader className='flex flex-col gap-1'>{drawer?.title}</DrawerHeader>}
         <DrawerBody className={cn('overflow-hidden  ')}>{drawer?.children}</DrawerBody>
       </DrawerContent>

@@ -12,7 +12,7 @@ const MyInputNumber = ({ ...props }: Props) => {
       {...props}
       classNames={{
         ...props?.classNames,
-        label: cn('!text-black font-bold text-base top-6 ', props?.classNames?.label),
+        label: cn('!text-black font-bold text-base top-6 z-[2]', props?.classNames?.label),
         input: cn('!text-black', props?.classNames?.input),
         inputWrapper: cn(
           // '!ring-0  border-[1px] border-gray-300 !bg-white !text-black !ring-transparent',
