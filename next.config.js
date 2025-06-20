@@ -17,16 +17,7 @@ const nextConfig = {
       },
     ],
   },
-   compiler: {
-    reactRemoveProperties: true,
-    styledComponents: {
-      displayName: true,
-      ssr: true,
-      minify: true,
-    },
-  },
-  reactStrictMode: true,
-  cleanDistDir: true,
+ 
    redirects: async () => {
     return [
       {
@@ -37,11 +28,23 @@ const nextConfig = {
       
     ]
   },
-  experimental:{
-    gzipSize: true,
-    optimizeCss: true,
-    turbopackMinify: true,
-  }
+ 
 };
+if(process.env.NEXT_PUBLIC_BUILD) {
+  console.log('building for production');
 
+  nextConfig.reactStrictMode = true;
+  nextConfig.cleanDistDir = true;
+
+  nextConfig.experimental.gzipSize = true;
+  nextConfig.experimental.optimizeCss = true;
+  nextConfig.experimental.turbopackMinify = true;
+
+  nextConfig.compiler.reactRemoveProperties = true;
+  nextConfig.compiler.styledComponents.displayName = true;
+  nextConfig.compiler.styledComponents.ssr = true;
+  nextConfig.compiler.styledComponents.minify = true;
+
+
+}
 module.exports = nextConfig;

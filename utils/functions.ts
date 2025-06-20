@@ -256,3 +256,17 @@ export const stringToArrayBuffer = (str: string) => {
 
   return buffer
 }
+
+export const isNaNData = (value?: any) => {
+  try {
+    const data: any = Number(value)
+
+    if (isNaN(data) || data === 'NaN') {
+      return true
+    }
+
+    return false
+  } catch {
+    return true
+  }
+}

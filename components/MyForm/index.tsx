@@ -10,7 +10,7 @@ const MyForm = ({ ...props }: Props) => {
   return (
     <Form
       {...props}
-      className={cn('overflow-hidden', props?.className)}
+      className={cn('w-full', props?.className)}
       onSubmit={(e) => {
         e.preventDefault()
         const data = Object.fromEntries(new FormData(e.currentTarget))

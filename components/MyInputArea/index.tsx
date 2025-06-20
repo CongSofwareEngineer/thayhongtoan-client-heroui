@@ -9,8 +9,8 @@ const MyInputArea = ({ ...props }: TextAreaProps) => {
       {...props}
       classNames={{
         ...props?.classNames,
-        label: '!text-black font-bold text-lg',
-        input: '!text-black',
+        label: cn('!text-black font-bold text-base top-6 ', props?.classNames?.label),
+        input: cn('!text-black', props?.classNames?.input),
         inputWrapper: cn(
           // '!ring-0  border-[1px] border-gray-300 !bg-white !text-black !ring-transparent',
           '!ring-0  border-[1px] border-gray-300 !bg-white !text-black !ring-transparent',

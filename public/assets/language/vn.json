@@ -1,6 +1,23 @@
 {
   "name": "Tên",
+  "common":{
+    "register": "Đăng ký",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "delete": "Xóa",
+    "edit": "Chỉnh sửa",
+    "update": "Cập nhật",
+    "create": "Tạo mới",
+    "view": "Xem",
+    "search": "Tìm kiếm",
+    "submit": "Gửi",
+    "close": "Đóng"
+  },
   "placeholder": {
+    "enterAge": "Nhập tuổi học sinh",
+    "enterEmail": "Nhập email (không bắt buộc)",
     "enterContent": "Nhập nội dung",
     "enterName": "Nhập họ tên",
     "enterNumberPhone": "Nhập số điện thoại",
@@ -63,5 +80,12 @@
     "login": "Đăng nhập",
     "password":"Mật khảu",
     "saveLogin": "Lưu đăng nhập"
+  },
+  "register":{
+    "register":"Đăng ký học",
+    "email":"Email",
+    "phone":"Số điện thoại",
+    "age":"Tuổi học sinh",
+    "name":"Họ tên"
   }
 }
