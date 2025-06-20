@@ -28,7 +28,7 @@ const nextConfig = {
     ];
   },
 };
-if (!process.env.NEXT_PUBLIC_BUILD) {
+if (process.env.NEXT_PUBLIC_BUILD) {
   console.log("building for production");
 
   nextConfig.reactStrictMode = true;
