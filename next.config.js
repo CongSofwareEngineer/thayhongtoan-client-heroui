@@ -1,9 +1,9 @@
-const path = require('path');
+const path = require("path");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
+    includePaths: [path.join(__dirname, "styles")],
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -17,34 +17,64 @@ const nextConfig = {
       },
     ],
   },
- 
-   redirects: async () => {
+
+  redirects: async () => {
     return [
       {
-        source: '/',
-        destination: '/home',
+        source: "/",
+        destination: "/home",
         permanent: false, // Set to true if you want a 308 permanent redirect
       },
-      
-    ]
+    ];
   },
- 
 };
-if(process.env.NEXT_PUBLIC_BUILD) {
-  console.log('building for production');
+if (!process.env.NEXT_PUBLIC_BUILD) {
+  console.log("building for production");
 
   nextConfig.reactStrictMode = true;
   nextConfig.cleanDistDir = true;
 
-  nextConfig.experimental.gzipSize = true;
-  nextConfig.experimental.optimizeCss = true;
-  nextConfig.experimental.turbopackMinify = true;
+  nextConfig.experimental = {
+    gzipSize: true,
+    optimizeCss: true,
+    turbopackMinify: true,
+    optimizePackageImports: [
+      "styled-components",
+      "framer-motion",
+      "react-device-detect",
+      "zustand",
+      "react-toastify",
+      "@heroui/button",
+      "@heroui/checkbox",
+      "@heroui/code",
+      "@heroui/drawer",
+      "@heroui/dropdown",
+      "@heroui/form",
+      "@heroui/image",
+      "@heroui/input",
+      "@heroui/kbd",
+      "@heroui/link",
+      "@heroui/listbox",
+      "@heroui/modal",
+      "@heroui/navbar",
+      "@heroui/number-input",
+      "@heroui/select",
+      "@heroui/snippet",
+      "@heroui/spinner",
+      "@heroui/switch",
+      "@heroui/system",
+      "@heroui/theme",
+      "@tanstack/react-query",
+    ],
+  };
 
-  nextConfig.compiler.reactRemoveProperties = true;
-  nextConfig.compiler.styledComponents.displayName = true;
-  nextConfig.compiler.styledComponents.ssr = true;
-  nextConfig.compiler.styledComponents.minify = true;
-
-
+  nextConfig.compiler = {
+    styledComponents: {
+      displayName: true,
+      ssr: true,
+      minify: true,
+    },
+    reactRemoveProperties: true,
+  };
 }
 module.exports = nextConfig;

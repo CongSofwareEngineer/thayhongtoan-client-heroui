@@ -50,7 +50,6 @@ export const metadata: Metadata = {
   twitter: {
     title: SITE_CONFIG.title,
     description: SITE_CONFIG.description,
-    card: 'summary_large_image',
     images: SITE_CONFIG.images,
     site: SITE_CONFIG.url,
   },
