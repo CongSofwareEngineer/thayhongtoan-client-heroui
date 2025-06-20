@@ -70,7 +70,7 @@ const Register = () => {
   console.log({ errors })
 
   return (
-    <div className='w-full md:px-12 px-5'>
+    <div className='md:px-12 px-5 w-full flex   items-center justify-center '>
       <div className='w-full bg-white  p-5 rounded-2xl max-w-[800px] h-full flex flex-col items-center justify-center'>
         <p className='text-title font-bold mb-4'>{translate('register.register')}</p>
         <MyForm className='w-full flex flex-col gap-6' validationErrors={errors}>

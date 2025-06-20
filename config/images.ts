@@ -36,5 +36,6 @@ export const images = {
   },
   home: {
     banner: '/assets/images/Home/banner.webp',
+    banner2: '/assets/images/Home/banner2.jpg',
   },
 }
