@@ -3,6 +3,7 @@ import '@/styles/aos.css'
 import '@/styles/overrides.scss'
 import { Metadata, Viewport } from 'next'
 import clsx from 'clsx'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 import { SITE_CONFIG } from '@/config/site'
 import { robotoSlab } from '@/config/fonts'
@@ -60,7 +61,7 @@ export const metadata: Metadata = {
   // <meta name="google-site-verification" content="-SD7kSWHZKEXxbtkWRvn1r5wtOy8o6Gv0wDuA_ituHk" />
   verification: {
     // google: 'YXX_WFs2UUKUX0hoW9cYgZsaKYARrlvneVgGWm7eGx8',
-    google: '-SD7kSWHZKEXxbtkWRvn1r5wtOy8o6Gv0wDuA_ituHk',
+    google: process.env.MODE_DEPLOY ? '-SD7kSWHZKEXxbtkWRvn1r5wtOy8o6Gv0wDuA_ituHk' : '',
     // me:'YXX_WFs2UUKUX0hoW9cYgZsaKYARrlvneVgGWm7eGx8'
   },
 }
@@ -76,8 +77,40 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html suppressHydrationWarning lang='en'>
-      <head>{/* google-site-verification=YXX_WFs2UUKUX0hoW9cYgZsaKYARrlvneVgGWm7eGx8 */}</head>
+      <head>
+        {process.env.MODE_DEPLOY && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'Education',
+                name: SITE_CONFIG.title,
+                url: SITE_CONFIG.url,
+                logo: SITE_CONFIG.images,
+                description: SITE_CONFIG.description,
+                address: {
+                  '@type': 'PostalAddress',
+                  streetAddress: 'Thành Phố Hà Tiên',
+                  addressLocality: 'Kiên Giang',
+                  addressCountry: 'Việt nam',
+                },
+                contactPoint: {
+                  '@type': 'ContactPoint',
+                  telephone: '+84-344-798-392',
+                  contactType: 'hodienhong8392@gmail.com',
+                },
+              }),
+            }}
+            type='application/ld+json'
+          />
+        )}
+      </head>
       <body className={clsx(robotoSlab.variable)}>
+        {process.env.MODE_DEPLOY && (
+          <>
+            <GoogleAnalytics gaId='G-6PQHPT7TWN' />
+          </>
+        )}
         <ReactQueryProvider>
           <StyledComponentsRegistry>
             <HeroUIProvider themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
