@@ -57,6 +57,10 @@ export const metadata: Metadata = {
     title: SITE_CONFIG.title,
     capable: true,
   },
+  verification: {
+    google: 'YXX_WFs2UUKUX0hoW9cYgZsaKYARrlvneVgGWm7eGx8',
+    // me:'YXX_WFs2UUKUX0hoW9cYgZsaKYARrlvneVgGWm7eGx8'
+  },
 }
 
 export const viewport: Viewport = {
@@ -70,7 +74,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html suppressHydrationWarning lang='en'>
-      <head />
+      <head>{/* google-site-verification=YXX_WFs2UUKUX0hoW9cYgZsaKYARrlvneVgGWm7eGx8 */}</head>
       <body className={clsx(robotoSlab.variable)}>
         <ReactQueryProvider>
           <StyledComponentsRegistry>
