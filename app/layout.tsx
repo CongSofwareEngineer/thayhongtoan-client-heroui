@@ -106,11 +106,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
       </head>
       <body className={clsx(robotoSlab.variable)}>
-        {process.env.MODE_DEPLOY && (
-          <>
-            <GoogleAnalytics gaId='G-6PQHPT7TWN' />
-          </>
-        )}
         <ReactQueryProvider>
           <StyledComponentsRegistry>
             <HeroUIProvider themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
@@ -119,6 +114,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </StyledComponentsRegistry>
         </ReactQueryProvider>
       </body>
+      {process.env.MODE_DEPLOY && (
+        <>
+          {/* <script async src='https://www.googletagmanager.com/gtag/js?id=G-6PQHPT7TWN' />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6PQHPT7TWN');`,
+              }}
+            /> */}
+          <GoogleAnalytics gaId='G-6PQHPT7TWN' />
+        </>
+      )}
     </html>
   )
 }
