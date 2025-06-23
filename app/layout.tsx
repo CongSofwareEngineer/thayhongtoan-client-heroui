@@ -3,7 +3,7 @@ import '@/styles/aos.css'
 import '@/styles/overrides.scss'
 import { Metadata, Viewport } from 'next'
 import clsx from 'clsx'
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
 import { SITE_CONFIG } from '@/config/site'
 import { robotoSlab } from '@/config/fonts'
@@ -79,33 +79,46 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html suppressHydrationWarning lang='en'>
       <head>
         {process.env.MODE_DEPLOY && (
-          <script
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                '@context': 'https://schema.org',
-                '@type': 'Education',
-                name: SITE_CONFIG.title,
-                url: SITE_CONFIG.url,
-                logo: SITE_CONFIG.images,
-                description: SITE_CONFIG.description,
-                address: {
-                  '@type': 'PostalAddress',
-                  streetAddress: 'Thành Phố Hà Tiên',
-                  addressLocality: 'Kiên Giang',
-                  addressCountry: 'Việt nam',
-                },
-                contactPoint: {
-                  '@type': 'ContactPoint',
-                  telephone: '+84-344-798-392',
-                  contactType: 'hodienhong8392@gmail.com',
-                },
-              }),
-            }}
-            type='application/ld+json'
-          />
+          <>
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                      })(window,document,'script','dataLayer','GTM-N3KGG4XW');`,
+              }}
+            />
+
+            <script
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  '@context': 'https://schema.org',
+                  '@type': 'Education',
+                  name: SITE_CONFIG.title,
+                  url: SITE_CONFIG.url,
+                  logo: SITE_CONFIG.images,
+                  description: SITE_CONFIG.description,
+                  address: {
+                    '@type': 'PostalAddress',
+                    streetAddress: 'Thành Phố Hà Tiên',
+                    addressLocality: 'Kiên Giang',
+                    addressCountry: 'Việt nam',
+                  },
+                  contactPoint: {
+                    '@type': 'ContactPoint',
+                    telephone: '+84-344-798-392',
+                    contactType: 'hodienhong8392@gmail.com',
+                  },
+                }),
+              }}
+              type='application/ld+json'
+            />
+          </>
         )}
       </head>
       <body className={clsx(robotoSlab.variable)}>
+        {process.env.MODE_DEPLOY && <GoogleTagManager gtmId='GTM-N3KGG4XW' />}
         <ReactQueryProvider>
           <StyledComponentsRegistry>
             <HeroUIProvider themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
