@@ -41,6 +41,7 @@ if (process.env.NEXT_PUBLIC_BUILD) {
   nextConfig.productionBrowserSourceMaps = false;
   nextConfig.reactStrictMode = true;
   nextConfig.cleanDistDir = true;
+  nextConfig.compress = true;
 
   nextConfig.experimental = {
     gzipSize: true,
