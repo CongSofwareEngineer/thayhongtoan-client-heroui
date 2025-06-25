@@ -76,11 +76,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html suppressHydrationWarning lang='en'>
+    <html suppressHydrationWarning lang='vi'>
       <head>
         {process.env.MODE_DEPLOY && (
           <>
-            <script
+            {/* <script
               dangerouslySetInnerHTML={{
                 __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -88,7 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                       })(window,document,'script','dataLayer','GTM-N3KGG4XW');`,
               }}
-            />
+            /> */}
 
             <script
               dangerouslySetInnerHTML={{
@@ -117,8 +117,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </>
         )}
       </head>
+      {process.env.MODE_DEPLOY && <GoogleTagManager gtmId='GTM-N3KGG4XW' />}
       <body className={clsx(robotoSlab.variable)}>
-        {process.env.MODE_DEPLOY && <GoogleTagManager gtmId='GTM-N3KGG4XW' />}
         <ReactQueryProvider>
           <StyledComponentsRegistry>
             <HeroUIProvider themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
