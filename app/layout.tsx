@@ -1,15 +1,15 @@
-import '@/styles/globals.scss'
 import '@/styles/aos.css'
+import '@/styles/globals.scss'
 import '@/styles/overrides.scss'
-import { Metadata, Viewport } from 'next'
 import clsx from 'clsx'
+import { Metadata, Viewport } from 'next'
 
-import { SITE_CONFIG } from '@/config/site'
-import { robotoSlab } from '@/config/fonts'
 import ClientRender from '@/components/ClientRender'
+import { HeroUIProvider } from '@/components/HeroUIProvider'
 import ReactQueryProvider from '@/components/ReactQueryProvider'
 import StyledComponentsRegistry from '@/components/StyledComponentsRegistry'
-import { HeroUIProvider } from '@/components/HeroUIProvider'
+import { robotoSlab } from '@/config/fonts'
+import { SITE_CONFIG } from '@/config/site'
 
 export const metadata: Metadata = {
   title: {
@@ -65,6 +65,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   viewportFit: 'cover',
+  userScalable: false,
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
