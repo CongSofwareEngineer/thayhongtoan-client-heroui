@@ -2,12 +2,14 @@ const path = require("path");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+ 
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
   eslint: {
     ignoreDuringBuilds: true,
   },
+  productionBrowserSourceMaps:true,
   images: {
     remotePatterns: [
       {
@@ -36,8 +38,10 @@ const nextConfig = {
 if (process.env.NEXT_PUBLIC_BUILD) {
   console.log("building for production");
 
+  nextConfig.productionBrowserSourceMaps = false;
   nextConfig.reactStrictMode = true;
   nextConfig.cleanDistDir = true;
+  nextConfig.compress = true;
 
   nextConfig.experimental = {
     gzipSize: true,

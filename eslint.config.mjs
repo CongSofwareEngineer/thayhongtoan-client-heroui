@@ -51,8 +51,8 @@ export default defineConfig([
         "plugin:prettier/recommended",
         "plugin:react-hooks/recommended",
         "plugin:jsx-a11y/recommended",
-        "plugin:@next/next/recommended"
-      )
+        "plugin:@next/next/recommended",
+      ),
     ),
 
     plugins: {
@@ -67,7 +67,7 @@ export default defineConfig([
     languageOptions: {
       globals: {
         ...Object.fromEntries(
-          Object.entries(globals.browser).map(([key]) => [key, "off"])
+          Object.entries(globals.browser).map(([key]) => [key, "off"]),
         ),
         ...globals.node,
       },
@@ -103,7 +103,7 @@ export default defineConfig([
       "no-unused-vars": "off",
       "unused-imports/no-unused-vars": "off",
       "unused-imports/no-unused-imports": "warn",
-
+      "jsx-a11y/iframe-has-title": "off",
       "@typescript-eslint/no-unused-vars": [
         "warn",
         {
@@ -181,7 +181,7 @@ export default defineConfig([
           trailingComma: "es5",
           jsxBracketSameLine: false,
           proseWrap: "always",
-          endOfLine: "lf" // 👈 Sửa lỗi dòng xuống ␍
+          endOfLine: "lf", // 👈 Sửa lỗi dòng xuống ␍
         },
       ],
     },
