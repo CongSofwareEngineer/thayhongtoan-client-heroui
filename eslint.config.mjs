@@ -174,6 +174,7 @@ export default defineConfig([
       "prettier/prettier": [
         "warn",
         {
+          "endOfLine": "lf",
           printWidth: 150,
           semi: false,
           singleQuote: true, // 👈 BẮT BUỘC: dùng nháy đơn
