@@ -13,6 +13,7 @@ import { robotoSlab } from '@/config/fonts'
 import { SITE_CONFIG } from '@/config/site'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_CONFIG.url),
   title: {
     default: SITE_CONFIG.title,
     template: `%s - ${SITE_CONFIG.title}`,

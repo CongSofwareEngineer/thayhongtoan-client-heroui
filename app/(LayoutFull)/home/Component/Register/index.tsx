@@ -13,14 +13,14 @@ import { cloneData } from '@/utils/functions'
 
 const Register = () => {
   const [formData, setFormData] = useState<FormData>()
-  const [errors, setErrors] = useState<ErrorForm>()
+  const [errors, setErrors] = useState<ErrorForm<FormData>>()
   const [loading, setLoading] = useState(false)
 
   const { translate } = useLanguage()
   const { checkEmail, checkNumberPhone } = useCheckForm()
 
   const onChangeForm = (vale: FormData) => {
-    const errorClone = cloneData(errors || {}) as ErrorForm
+    const errorClone = cloneData(errors || {}) as ErrorForm<FormData>
 
     if (typeof vale?.email !== 'undefined') {
       if (vale?.email) {
@@ -45,6 +45,23 @@ const Register = () => {
         delete errorClone.sdt
       }
     }
+
+    if (typeof vale?.age !== 'undefined') {
+      if (!vale?.age) {
+        errorClone.age = translate('errors.empty')
+      } else {
+        delete errorClone.age
+      }
+    }
+
+    if (typeof vale?.name !== 'undefined') {
+      if (!vale?.name) {
+        errorClone.name = translate('errors.empty')
+      } else {
+        delete errorClone.name
+      }
+    }
+
     setErrors(errorClone)
     setFormData((prev) => ({ ...prev, ...vale }))
   }
@@ -66,8 +83,6 @@ const Register = () => {
     setLoading(false)
     console.log({ formData })
   }
-
-  console.log({ errors })
 
   return (
     <div className='md:px-12 px-5 w-full flex   items-center justify-center '>
@@ -114,7 +129,7 @@ const Register = () => {
             onChange={(e) => onChangeForm({ email: e.target.value })}
           />
           <MyButton className='w-full mt-6' disabled={Object.keys(errors || {}).length > 0} isLoading={loading} type='submit' onClick={handleSubmit}>
-            {translate('common.submit')}
+            {translate('common.send')}
           </MyButton>
         </MyForm>
       </div>
