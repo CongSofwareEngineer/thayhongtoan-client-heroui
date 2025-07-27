@@ -1,16 +1,23 @@
 'use client'
+import dynamic from 'next/dynamic'
 import { PropsWithChildren, Suspense } from 'react'
 import { ToastContainer } from 'react-toastify'
-import dynamic from 'next/dynamic'
 
-import Header from '../Header'
+// import Header from '../Header'
 // import MyModal from '../MyModal'
-import LoadingFirstLoad from '../LoadingFirstLoad'
-import MyDrawer from '../MyDrawer'
-import Footer from '../Footer'
+// import Footer from '../Footer'
+// import LoadingFirstLoad from '../LoadingFirstLoad'
+// import MyDrawer from '../MyDrawer'
 // import Modal2 from '../Modal2'
 
+const Footer = dynamic(() => import('../Footer'))
+const LoadingFirstLoad = dynamic(() => import('../LoadingFirstLoad'))
+const Header = dynamic(() => import('../Header'))
+
 const MyModal = dynamic(() => import('../MyModal'), {
+  ssr: false,
+})
+const MyDrawer = dynamic(() => import('../MyDrawer'), {
   ssr: false,
 })
 

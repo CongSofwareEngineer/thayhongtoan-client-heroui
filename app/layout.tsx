@@ -72,6 +72,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   viewportFit: 'cover',
+  colorScheme: 'light',
   userScalable: false,
 }
 

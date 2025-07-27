@@ -1,16 +1,15 @@
 import Link from 'next/link'
-import React from 'react'
-import { FaFacebook, FaSquarePhoneFlip } from 'react-icons/fa6'
-import Image from 'next/image'
-import { FiAlignJustify } from 'react-icons/fi'
 import { AiFillContacts, AiFillHome } from 'react-icons/ai'
+import { FaFacebook, FaSquarePhoneFlip } from 'react-icons/fa6'
+import { FiAlignJustify } from 'react-icons/fi'
 import { IoIosInformationCircleOutline } from 'react-icons/io'
 
-import useLanguage from '@/hooks/useLanguage'
-import useMedia from '@/hooks/useMedia'
+import MyImage from '@/components/MyImage'
 import { images } from '@/config/images'
 import { LINK_CONTACT } from '@/constants/app'
 import useDrawer from '@/hooks/useDrawer'
+import useLanguage from '@/hooks/useLanguage'
+import useMedia from '@/hooks/useMedia'
 
 const Nav = () => {
   const { isMobile } = useMedia()
@@ -21,7 +20,7 @@ const Nav = () => {
     return (
       <div className='flex gap-3 items-center'>
         <Link className='flex gap-1 items-center' href={LINK_CONTACT.Zalo} target='_blank'>
-          <Image fill alt='icon zalo' className='!w-6  !h-6 !relative' src={images.icons.iconZalo} />
+          <MyImage fill alt='icon zalo' className='!w-6  !h-6 !relative' src={images.icons.iconZalo} />
           {!isMobile && <span>0344798392</span>}
         </Link>
         <Link className='flex gap-1 items-center' href={LINK_CONTACT.SDT} target='_blank'>

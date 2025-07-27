@@ -1,17 +1,17 @@
 'use client'
-import React, { useState } from 'react'
 import { ValidationErrors } from '@react-types/shared'
+import { useState } from 'react'
 
 import { FormContact } from './type'
 
-import useMedia from '@/hooks/useMedia'
-import MyImage from '@/components/MyImage'
-import { images } from '@/config/images'
-import MyForm from '@/components/MyForm'
-import useLanguage from '@/hooks/useLanguage'
 import MyButton from '@/components/MyButton'
+import MyForm from '@/components/MyForm'
+import MyImage from '@/components/MyImage'
 import MyInput from '@/components/MyInput'
 import MyInputArea from '@/components/MyInputArea'
+import { images } from '@/config/images'
+import useLanguage from '@/hooks/useLanguage'
+import useMedia from '@/hooks/useMedia'
 
 const ContactScreen = () => {
   const { isMobile } = useMedia()
@@ -45,7 +45,7 @@ const ContactScreen = () => {
           validationErrors={errors}
           onSubmit={onSubmit}
         >
-          <div className='w-full flex flex-col gap-6'>
+          <div className='w-full flex flex-col gap-3'>
             <p className='w-full text-title text-center'>{translate('header.contact')}</p>
             <MyInput
               isRequired
@@ -89,7 +89,7 @@ const ContactScreen = () => {
           </div>
 
           <MyButton className='w-full' type='submit'>
-            Submit
+            {translate('common.send')}
           </MyButton>
         </MyForm>
       </div>

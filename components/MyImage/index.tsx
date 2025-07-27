@@ -1,15 +1,17 @@
-import React, { useState } from 'react'
 import { useInView } from 'framer-motion'
-import { useRef } from 'react'
 import Image, { ImageProps } from 'next/image'
+import { useRef, useState } from 'react'
 
-import { cn } from '@/utils/tailwind'
 import { images } from '@/config/images'
+import { cn } from '@/utils/tailwind'
 
 type Props = {
   noAnimation?: boolean
-} & ImageProps
-const MyImage = ({ noAnimation = false, ...props }: Props) => {
+} & Omit<ImageProps, 'alt' | 'src'> & {
+    alt?: string
+    src?: string
+  }
+const MyImage = ({ noAnimation = false, src, alt = 'thay-hong-toan', ...props }: Props) => {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
 
@@ -19,10 +21,13 @@ const MyImage = ({ noAnimation = false, ...props }: Props) => {
     <Image
       ref={ref}
       fill
+      alt={alt}
       draggable={false}
+      loading='lazy'
+      priority={false}
+      sizes='100vw'
       {...props}
       className={cn('!relative overflow-hidden', props?.className)}
-      src={inView ? props.src : 'https://res.cloudinary.com/tc-store/image/upload/w_100/v1734883048/tc-store/bgWhiteBlur_yxlqi7.png'}
       style={{
         filter: loaded || noAnimation ? 'none' : 'blur(20px)',
         transition: 'filter 0.08s ease-out',
@@ -35,6 +40,12 @@ const MyImage = ({ noAnimation = false, ...props }: Props) => {
       onLoad={() => {
         setLoaded(true)
       }}
+      src={
+        inView
+          ? src || images.icons.avatarDefault
+          : 'https://res.cloudinary.com/tc-store/image/upload/w_100/v1734883048/tc-store/bgWhiteBlur_yxlqi7.png'
+      }
+      // src={src || images.icons.avatarDefault}
     />
   )
 }

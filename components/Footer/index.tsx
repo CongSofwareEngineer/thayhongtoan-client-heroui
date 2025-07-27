@@ -1,19 +1,19 @@
 'use client'
-import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { AiOutlineCopy } from 'react-icons/ai'
 import { CgMail } from 'react-icons/cg'
 
-import { copyToClipboard } from '@/utils/notification'
-import { LINK_CONTACT } from '@/constants/app'
+import MyImage from '../MyImage'
+
 import { images } from '@/config/images'
+import { LINK_CONTACT } from '@/constants/app'
+import { copyToClipboard } from '@/utils/notification'
 
 const Item = ({ icon, value, link }: any) => {
   return (
     <div className='flex gap-2 items-center'>
       {typeof icon === 'string' ? (
-        <Image fill alt={`icon-footer-${value}`} className='!relative md:!w-[25px] !w-[20px] md:!h-[25px] !h-[20px]' src={icon} />
+        <MyImage fill alt={`icon-footer-${value}`} className='!relative md:!w-[25px] !w-[20px] md:!h-[25px] !h-[20px]' src={icon} />
       ) : (
         <div className='md:text-[25px] text-[20px]'>{icon}</div>
       )}

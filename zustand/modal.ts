@@ -1,15 +1,12 @@
-import { create } from 'zustand'
-import { devtools } from 'zustand/middleware'
 import { ModalProps } from '@heroui/modal'
 import { ReactNode } from 'react'
+import { create } from 'zustand'
+import { devtools } from 'zustand/middleware'
 
 import { ZUSTAND } from '@/constants/zustand'
 
 type Modal = {
-  //   isOpen?: boolean
-  //   /** Whether the overlay is open by default (uncontrolled). */
-  //   defaultOpen?: boolean
-  //   /** Handler that is called when the overlay's open state changes. */
+  addModal?: boolean
   callBackAfter?: () => any
   showBtnClose?: boolean
   children?: ReactNode
@@ -17,37 +14,34 @@ type Modal = {
 } & ModalProps
 
 interface ModalState {
-  [ZUSTAND.Modal]: Modal
+  listModals: Modal[]
   openModal: (nextModalAdmin: Modal) => void
   closeModal: (isIconClose?: boolean) => void
 }
 export const modal = create<ModalState>()(
   devtools(
     (set, get) => ({
+      listModals: [],
       [ZUSTAND.Modal]: {
         open: false,
       },
       openModal: (param: Modal) => {
-        set({
-          [ZUSTAND.Modal]: {
-            showBtnClose: true,
-            placement: 'center',
-            ...param,
-            isOpen: true,
-          },
-        })
+        const listModals = get().listModals
+
+        if (param.addModal) {
+          listModals.push(param)
+        } else {
+          listModals[listModals.length === 0 ? 0 : listModals.length - 1] = param
+        }
+        set({ listModals })
       },
       closeModal: () => {
-        const modal = get()[ZUSTAND.Modal]
+        const listModals = get().listModals
+        const modal = listModals.pop()
 
-        modal.callBackAfter && modal.callBackAfter()
-        const init = {
-          [ZUSTAND.Modal]: {
-            isOpen: false,
-          },
-        }
+        modal?.callBackAfter && modal?.callBackAfter()
 
-        set(init as any)
+        set({ listModals })
       },
     }),
     {

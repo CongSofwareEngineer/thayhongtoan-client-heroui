@@ -2,13 +2,13 @@ import { useState } from 'react'
 
 import { FormData } from './type'
 
+import MyButton from '@/components/MyButton'
 import MyForm from '@/components/MyForm'
 import MyInput from '@/components/MyInput'
+import MyInputNumber from '@/components/MyInputNumber'
+import useCheckForm from '@/hooks/useCheckForm'
 import useLanguage from '@/hooks/useLanguage'
 import { ErrorForm } from '@/types'
-import useCheckForm from '@/hooks/useCheckForm'
-import MyButton from '@/components/MyButton'
-import MyInputNumber from '@/components/MyInputNumber'
 import { cloneData } from '@/utils/functions'
 
 const Register = () => {
@@ -73,7 +73,7 @@ const Register = () => {
     <div className='md:px-12 px-5 w-full flex   items-center justify-center '>
       <div className='w-full bg-white  p-5 rounded-2xl max-w-[800px] h-full flex flex-col items-center justify-center'>
         <p className='text-title font-bold mb-4'>{translate('register.register')}</p>
-        <MyForm className='w-full flex flex-col gap-6' validationErrors={errors}>
+        <MyForm className='w-full flex flex-col gap-3' validationErrors={errors}>
           <MyInput
             isRequired
             errorMessage={() => errors?.name}

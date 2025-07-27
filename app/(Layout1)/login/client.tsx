@@ -1,15 +1,15 @@
 'use client'
-import React, { useState } from 'react'
 import { ValidationErrors } from '@react-types/shared'
+import { useState } from 'react'
 
 import { FormLogin } from './type'
 
 import MyButton from '@/components/MyButton'
+import MyCheckbox from '@/components/MyCheckbox'
 import MyForm from '@/components/MyForm'
 import MyInput from '@/components/MyInput'
 import useLanguage from '@/hooks/useLanguage'
 import useMedia from '@/hooks/useMedia'
-import MyCheckbox from '@/components/MyCheckbox'
 
 const LoginScreen = () => {
   const { isMobile } = useMedia()

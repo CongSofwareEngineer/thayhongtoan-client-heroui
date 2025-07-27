@@ -1,4 +1,3 @@
-import React from 'react'
 import { ResolvingMetadata } from 'next'
 
 import ContactScreen from './client'

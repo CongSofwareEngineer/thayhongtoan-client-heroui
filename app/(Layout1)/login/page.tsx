@@ -1,4 +1,3 @@
-import React from 'react'
 import { ResolvingMetadata } from 'next'
 
 import LoginScreen from './client'

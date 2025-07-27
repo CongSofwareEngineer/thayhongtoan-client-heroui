@@ -1,11 +1,11 @@
-import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+
+import MyImage from '../MyImage'
 
 import Nav from './Components/Nav'
 
-import useMedia from '@/hooks/useMedia'
 import { images } from '@/config/images'
+import useMedia from '@/hooks/useMedia'
 
 const Header = () => {
   const { isMobile } = useMedia()
@@ -16,7 +16,7 @@ const Header = () => {
         <div className='w-full max-w-[1550px] px-5 m-auto flex items-center gap-3 h-full '>
           <div className='h-full relative '>
             <Link href={'/'}>
-              <Image fill alt='logo-tcstore' className='!relative !w-auto !h-full' src={images.logo} />
+              <MyImage fill alt='logo-tcstore' className='!relative !w-auto !h-full' src={images.logo} />
             </Link>
           </div>
           <Nav />
