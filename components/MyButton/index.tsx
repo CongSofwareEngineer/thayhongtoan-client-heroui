@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from '@heroui/button'
-import React, { MouseEventHandler } from 'react'
+import { MouseEventHandler } from 'react'
 
 import { cn } from '@/utils/tailwind'
 

@@ -1,3 +1,5 @@
+export const PAGE_SIZE_LIMIT = 20
+
 export enum LANGUAGE_SUPPORT {
   EN = 'en',
   CN = 'cn',
@@ -32,6 +34,9 @@ export enum OBSERVER_KEY {
 export enum COOKIE_KEY {
   'Auth' = 'Auth',
   'AuthRefresh' = 'AuthRefresh',
+
+  'Token' = 'Token',
+  'TokenRefresh' = 'TokenRefresh',
 }
 
 export enum PATH_IMG {

@@ -1,5 +1,3 @@
-// import lodash from 'lodash'
-
 import { images } from '@/config/images'
 
 export const cloneData = (data: any, defaultValue: any = '') => {
@@ -268,5 +266,13 @@ export const isNaNData = (value?: any) => {
     return false
   } catch {
     return true
+  }
+}
+
+export const isLink = (url: string) => {
+  try {
+    return url.startsWith('ipfs://') || url.startsWith('http://') || url.startsWith('https://')
+  } catch {
+    return false
   }
 }

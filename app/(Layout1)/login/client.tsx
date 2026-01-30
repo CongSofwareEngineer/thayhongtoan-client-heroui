@@ -63,7 +63,7 @@ const LoginScreen = () => {
           <MyCheckbox>{translate('login.saveLogin')}</MyCheckbox>
 
           <MyButton className='w-full' type='submit'>
-            Submit
+            {translate('login.login')}
           </MyButton>
         </MyForm>
       </div>
