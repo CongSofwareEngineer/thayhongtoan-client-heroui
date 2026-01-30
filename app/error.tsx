@@ -1,6 +1,8 @@
 'use client'
 
-import { useEffect } from 'react';
+import { useEffect } from 'react'
+
+import MyButton from '@/components/MyButton'
 
 export default function Error({ error, reset }: { error: Error; reset: () => void }) {
   useEffect(() => {
@@ -12,14 +14,9 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
   return (
     <div>
       <h2>Something went wrong!</h2>
-      <button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }
-      >
+      <MyButton color='primary' onClick={() => reset()}>
         Try again
-      </button>
+      </MyButton>
     </div>
   )
 }

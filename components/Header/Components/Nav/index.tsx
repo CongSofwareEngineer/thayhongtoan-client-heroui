@@ -1,8 +1,17 @@
 import Link from 'next/link'
-import { AiFillContacts, AiFillHome } from 'react-icons/ai'
+import { AiFillContacts, AiFillHome, AiFillSetting } from 'react-icons/ai'
 import { FaFacebook, FaSquarePhoneFlip } from 'react-icons/fa6'
 import { FiAlignJustify } from 'react-icons/fi'
 import { IoIosInformationCircleOutline } from 'react-icons/io'
+import {
+  MdOutlineClass,
+  MdOutlinePayments,
+  MdOutlineHowToReg,
+  MdOutlinePeople,
+  MdOutlinePersonOutline,
+  MdOutlineFormatListBulleted,
+} from 'react-icons/md'
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@heroui/dropdown'
 
 import MyImage from '@/components/MyImage'
 import { images } from '@/config/images'
@@ -15,6 +24,15 @@ const Nav = () => {
   const { isMobile } = useMedia()
   const { translate } = useLanguage()
   const { openDrawer } = useDrawer()
+
+  const adminLinks = [
+    { key: 'attendance', label: 'header.admin.attendance', href: '/admin/attendance', icon: <MdOutlineFormatListBulleted /> },
+    { key: 'class', label: 'header.admin.class', href: '/admin/class', icon: <MdOutlineClass /> },
+    { key: 'payment', label: 'header.admin.payment', href: '/admin/payment', icon: <MdOutlinePayments /> },
+    { key: 'register', label: 'header.admin.register', href: '/admin/register', icon: <MdOutlineHowToReg /> },
+    { key: 'student', label: 'header.admin.student', href: '/admin/student', icon: <MdOutlinePeople /> },
+    { key: 'teacher', label: 'header.admin.teacher', href: '/admin/teacher', icon: <MdOutlinePersonOutline /> },
+  ]
 
   const renderContact = () => {
     return (
@@ -40,7 +58,6 @@ const Nav = () => {
       <div className='flex md:flex-row flex-col gap-3 md:items-center'>
         <Link className='flex items-center gap-2' href={'/'}>
           {isMobile && <AiFillHome />}
-
           <span>{translate('header.home')}</span>
         </Link>
         <Link className='flex items-center gap-2' href={'/contact'}>
@@ -51,6 +68,34 @@ const Nav = () => {
           {isMobile && <IoIosInformationCircleOutline />}
           <span>{translate('header.info')}</span>
         </Link>
+
+        {isMobile ? (
+          <div className='flex flex-col gap-2 mt-2 pt-2 border-t'>
+            <p className='text-tiny font-bold text-default-400 uppercase'>{translate('header.admin.title')}</p>
+            {adminLinks.map((link) => (
+              <Link key={link.key} className='flex items-center gap-2 pl-2' href={link.href}>
+                {link.icon}
+                <span>{translate(link.label as any)}</span>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <Dropdown>
+            <DropdownTrigger>
+              <div className='flex items-center gap-2 cursor-pointer hover:text-primary transition-colors'>
+                <AiFillSetting />
+                <span>Admin</span>
+              </div>
+            </DropdownTrigger>
+            <DropdownMenu aria-label='Admin Actions'>
+              {adminLinks.map((link) => (
+                <DropdownItem key={link.key} href={link.href} startContent={link.icon}>
+                  {translate(link.label as any)}
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </Dropdown>
+        )}
       </div>
     )
   }

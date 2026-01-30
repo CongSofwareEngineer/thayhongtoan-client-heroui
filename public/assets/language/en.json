@@ -15,13 +15,48 @@
     "claimMening": "Claim profit",
     "disconnect": "Disconnect",
     "accept": "Accept",
-    "stop": "Stop"
+    "stop": "Stop",
+    "noData": "No data",
+    "loadMore": "Load more"
   },
   "header":{
     "home": "Home",
     "context": "Context",
     "contact": "Contact",
-    "info": "Information"
-     
+    "info": "Information",
+    "admin": {
+      "title": "Admin",
+      "attendance": "Attendance",
+      "class": "Class",
+      "payment": "Payment",
+      "register": "Register",
+      "student": "Student",
+      "teacher": "Teacher"
+    }
+  },
+  "admin": {
+    "attendanceManagement": "Attendance Management",
+    "classManagement": "Class Management",
+    "paymentManagement": "Payment Management",
+    "registerManagement": "Registration Management",
+    "studentManagement": "Student Management",
+    "teacherManagement": "Teacher Management",
+    "startTime": "Start Time",
+    "endTime": "End Time",
+    "amount": "Amount",
+    "month": "Month",
+    "phone": "Phone",
+    "address": "Address",
+    "id": "ID",
+    "class": "Class",
+    "email": "Email",
+    "student": "Student",
+    "status": "Status",
+    "day": "Date",
+    "name": "Name",
+    "teacher": "Teacher"
+  },
+  "errors": {
+    "serverError": "Server error, please try again later"
   }
 }

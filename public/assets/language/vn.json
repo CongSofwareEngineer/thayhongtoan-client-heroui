@@ -13,7 +13,9 @@
     "view": "Xem",
     "search": "Tìm kiếm",
     "send": "Gửi",
-    "close": "Đóng"
+    "close": "Đóng",
+    "noData": "Không có dữ liệu",
+    "loadMore": "Tải thêm"
   },
   "placeholder": {
     "enterAge": "Nhập tuổi học sinh",
@@ -68,13 +70,45 @@
     "minimumPass": "Mật khảu tối thiểu 4 ký tự",
     "minimumText": "Tối thiểu 4 ký tự",
     "pinCode": "Pin code sai",
-    "maxNameUser": "Tên không quá 24 ký tự"
+    "maxNameUser": "Tên không quá 24 ký tự",
+    "serverError": "Lỗi máy chủ, vui lòng thử lại sau"
   },
   "header": {
     "home": "Trang chủ",
     "context": "Context",
     "contact": "Liên hệ",
-    "info": "Thông tin"
+    "info": "Thông tin",
+    "admin": {
+      "title": "Quản trị",
+      "attendance": "Điểm danh",
+      "class": "Lớp học",
+      "payment": "Thanh toán",
+      "register": "Đăng ký",
+      "student": "Học sinh",
+      "teacher": "Giáo viên"
+    }
+  },
+  "admin": {
+    "attendanceManagement": "Quản lý điểm danh",
+    "classManagement": "Quản lý lớp học",
+    "paymentManagement": "Quản lý thanh toán",
+    "registerManagement": "Quản lý đăng ký",
+    "studentManagement": "Quản lý học sinh",
+    "teacherManagement": "Quản lý giáo viên",
+    "startTime": "Thời gian bắt đầu",
+    "endTime": "Thời gian kết thúc",
+    "amount": "Số tiền",
+    "month": "Tháng",
+    "phone": "Số điện thoại",
+    "address": "Địa chỉ",
+    "id": "Mã",
+    "class": "Lớp",
+    "email": "Email",
+    "student": "Học sinh",
+    "status": "Trạng thái",
+    "day": "Ngày",
+    "name": "Tên",
+    "teacher": "Giáo viên"
   },
   "login":{
     "login": "Đăng nhập",
