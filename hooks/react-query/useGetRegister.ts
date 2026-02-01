@@ -11,10 +11,10 @@ const useGetRegister = (query: IRegisterFilter = {}, limit = PAGE_SIZE_LIMIT) =>
     initialPageParam: 1,
     queryKey: [QUERY_KEY.Register, query],
     queryFn: async ({ pageParam = 1 }) => {
-      const response = await RegisterAPI.getAll({ ...query, page: pageParam, limit })
+      const response = await RegisterAPI.get('', { ...query, page: pageParam, limit })
 
       return {
-        data: (response?.data as IRegister[]) || [],
+        data: response?.data || [],
         page: pageParam,
       }
     },

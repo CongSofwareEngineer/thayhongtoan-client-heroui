@@ -1,16 +1,10 @@
 'use client'
 import React from 'react'
-import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
-  Spinner,
-} from '@heroui/react'
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from '@heroui/table'
+import { Spinner } from '@heroui/spinner'
+
 import MyButton from '../MyButton'
-import { cn } from '@/utils/tailwind'
+
 import useLanguage from '@/hooks/useLanguage'
 
 interface Column {
@@ -28,20 +22,12 @@ interface MyTableProps {
   ariaLabel?: string
 }
 
-const MyTable = ({
-  columns,
-  items,
-  renderCell,
-  isLoading,
-  hasNextPage,
-  onLoadMore,
-  ariaLabel = 'Data table',
-}: MyTableProps) => {
+const MyTable = ({ columns, items, renderCell, isLoading, hasNextPage, onLoadMore, ariaLabel = 'Data table' }: MyTableProps) => {
   const { translate } = useLanguage()
 
   return (
     <div className='flex flex-col gap-4 w-full'>
-      <Table 
+      <Table
         aria-label={ariaLabel}
         classNames={{
           wrapper: 'p-0 shadow-none border border-default-200 rounded-xl overflow-hidden',
@@ -49,26 +35,16 @@ const MyTable = ({
           td: 'py-4 border-t border-default-100',
         }}
       >
-        <TableHeader columns={columns}>
-          {(column) => (
-            <TableColumn key={column.key}>
-              {column.label}
-            </TableColumn>
-          )}
-        </TableHeader>
-        <TableBody 
-          items={items}
-          loadingState={isLoading ? 'loading' : 'idle'}
-          loadingContent={<Spinner label={translate('common.loading')} />}
+        <TableHeader columns={columns}>{(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}</TableHeader>
+        <TableBody
           emptyContent={!isLoading && translate('common.noData')}
+          items={items}
+          loadingContent={<Spinner label={translate('common.loading')} />}
+          loadingState={isLoading ? 'loading' : 'idle'}
         >
           {(item) => (
             <TableRow key={item._id || item.key || JSON.stringify(item)}>
-              {(columnKey) => (
-                <TableCell>
-                  {renderCell(item, columnKey as string)}
-                </TableCell>
-              )}
+              {(columnKey) => <TableCell>{renderCell(item, columnKey as string)}</TableCell>}
             </TableRow>
           )}
         </TableBody>
@@ -76,12 +52,7 @@ const MyTable = ({
 
       {hasNextPage && (
         <div className='flex justify-center mt-4'>
-          <MyButton 
-            color='primary' 
-            variant='flat'
-            onClick={onLoadMore}
-            isLoading={isLoading}
-          >
+          <MyButton color='primary' isLoading={isLoading} variant='flat' onClick={onLoadMore}>
             {translate('common.loadMore')}
           </MyButton>
         </div>

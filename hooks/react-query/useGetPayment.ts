@@ -11,10 +11,10 @@ const useGetPayment = (query: IPaymentFilter = {}, limit = PAGE_SIZE_LIMIT) => {
     initialPageParam: 1,
     queryKey: [QUERY_KEY.Payment, query],
     queryFn: async ({ pageParam = 1 }) => {
-      const response = await PaymentAPI.getAll({ ...query, page: pageParam, limit })
+      const response = await PaymentAPI.get('', { ...query, page: pageParam, limit })
 
       return {
-        data: (response?.data as IPayment[]) || [],
+        data: response?.data || [],
         page: pageParam,
       }
     },

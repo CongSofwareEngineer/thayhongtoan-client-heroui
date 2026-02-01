@@ -12,6 +12,8 @@ const ClassAdminScreen = () => {
   const { translate } = useLanguage()
   const { data: classes = [], isLoading, isError, fetchNextPage, hasNextPage } = useGetClass({})
 
+  console.log({ classes })
+
   const columns = [
     { key: 'name', label: translate('admin.name') },
     { key: 'teacher', label: translate('admin.teacher') },

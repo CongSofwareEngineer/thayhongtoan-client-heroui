@@ -2,17 +2,34 @@ import { REQUEST_TYPE, OBSERVER_KEY } from '@/constants/app'
 import { fetchData, ClientAPITypeParam } from '@/config/fetchConfig'
 import ObserverService from '@/services/observer'
 
-class BaseAPI {
-  static baseUrl: string = process.env.NEXT_PUBLIC_API_APP || ''
+class BaseAPI<T, F> {
+  baseUrl: string = process.env.NEXT_PUBLIC_API_APP || ''
+  router: string = ''
 
   static refreshPromise: Promise<any> | null = null
 
-  static async request(
+  async request<R = any, B = any>(
     method: REQUEST_TYPE,
-    url: string,
-    body?: any,
+    urlOriginal: string,
+    body?: B,
     config?: Partial<ClientAPITypeParam>
-  ): Promise<{ data: any; error?: any; messages: any }> {
+  ): Promise<{ data: R; error?: any; messages: any }> {
+    let url = urlOriginal
+
+    if (this.router && !url.startsWith('/auth')) {
+      url = this.router + url
+      url = url.replace('//', '/')
+    }
+    console.log({
+      config: {
+        ...config,
+        url,
+        body,
+        method,
+        baseURL: this.baseUrl,
+      },
+    })
+
     const response = await fetchData({
       ...config,
       url,
@@ -21,7 +38,7 @@ class BaseAPI {
       baseURL: this.baseUrl,
     })
 
-    if ((response?.error?.response?.status === 401 || response?.messages === 'unauthorized') && url !== '/auth/refresh') {
+    if ((response?.error?.response?.status === 401 || response?.messages === 'unauthorized') && urlOriginal !== '/auth/refresh') {
       if (!BaseAPI.refreshPromise) {
         BaseAPI.refreshPromise = this.post('/auth/refresh').finally(() => {
           BaseAPI.refreshPromise = null
@@ -31,7 +48,7 @@ class BaseAPI {
       const refreshRes = await BaseAPI.refreshPromise
 
       if (refreshRes?.messages === 'success') {
-        return this.request(method, url, body, config)
+        return this.request<R, B>(method, urlOriginal, body, config)
       } else {
         ObserverService.emit(OBSERVER_KEY.LogOut, false)
       }
@@ -40,24 +57,44 @@ class BaseAPI {
     return response
   }
 
-  static get(url: string, body?: any, config?: Partial<ClientAPITypeParam>) {
-    return this.request(REQUEST_TYPE.GET, url, body, config)
+  get<R = T[], B = F>(url: string, query?: B, config?: Partial<ClientAPITypeParam>) {
+    if (query) {
+      const queryObj = new URLSearchParams(query as any)
+      const queryString = queryObj.toString()
+
+      url = url + `?${queryString}`
+    }
+    if (!url.startsWith('/')) {
+      url = '/' + url
+    }
+
+    console.log({ url })
+
+    return this.request<R, B>(REQUEST_TYPE.GET, url, undefined, config)
   }
 
-  static post(url: string, body?: any, config?: Partial<ClientAPITypeParam>) {
-    return this.request(REQUEST_TYPE.POST, url, body, config)
+  post<R = T, B = Partial<T>>(url: string, body?: B, config?: Partial<ClientAPITypeParam>) {
+    return this.request<R, B>(REQUEST_TYPE.POST, url, body, config)
   }
 
-  static put(url: string, body?: any, config?: Partial<ClientAPITypeParam>) {
-    return this.request(REQUEST_TYPE.PUT, url, body, config)
+  put<R = T, B = Partial<T>>(url: string, body?: B, config?: Partial<ClientAPITypeParam>) {
+    return this.request<R, B>(REQUEST_TYPE.PUT, url, body, config)
   }
 
-  static patch(url: string, body?: any, config?: Partial<ClientAPITypeParam>) {
-    return this.request(REQUEST_TYPE.PATCH, url, body, config)
+  patch<R = T, B = Partial<T>>(url: string, body?: B, config?: Partial<ClientAPITypeParam>) {
+    return this.request<R, B>(REQUEST_TYPE.PATCH, url, body, config)
   }
 
-  static deleteData(url: string, body?: any, config?: Partial<ClientAPITypeParam>) {
-    return this.request(REQUEST_TYPE.DELETE, url, body, config)
+  delete<R = T, B = any>(url: string, body?: B, config?: Partial<ClientAPITypeParam>) {
+    return this.request<R, B>(REQUEST_TYPE.DELETE, url, body, config)
+  }
+
+  create(body: Partial<T>) {
+    return this.post<T>('', body)
+  }
+
+  update(id: string, body: Partial<T>) {
+    return this.patch<T>(`/${id}`, body)
   }
 }
 

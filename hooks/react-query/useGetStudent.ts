@@ -11,10 +11,10 @@ const useGetStudent = (query: IStudentFilter = {}, limit = PAGE_SIZE_LIMIT) => {
     initialPageParam: 1,
     queryKey: [QUERY_KEY.Student, query],
     queryFn: async ({ pageParam = 1 }) => {
-      const response = await StudentAPI.getAll({ ...query, page: pageParam, limit })
+      const response = await StudentAPI.get('', { ...query, page: pageParam, limit })
 
       return {
-        data: (response?.data as IStudent[]) || [],
+        data: response?.data || [],
         page: pageParam,
       }
     },

@@ -17,7 +17,8 @@
     "accept": "Accept",
     "stop": "Stop",
     "noData": "No data",
-    "loadMore": "Load more"
+    "loadMore": "Load more",
+    "loading": "Loading..."
   },
   "header":{
     "home": "Home",

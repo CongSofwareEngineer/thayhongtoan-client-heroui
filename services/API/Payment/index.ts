@@ -2,34 +2,18 @@ import BaseAPI from '../BaseAPI'
 
 import { IPayment, IPaymentFilter } from './type'
 
-class PaymentAPI extends BaseAPI {
-  static getAll(query?: IPaymentFilter) {
-    return this.get('/payment', query)
+class PaymentBase extends BaseAPI<IPayment, IPaymentFilter> {
+  router = '/payment'
+
+  getByStudent(idStudent: string) {
+    return this.get('/student', { idStudent })
   }
 
-  static getById(id: string) {
-    return this.get(`/payment/${id}`)
-  }
-
-  static getByStudent(idStudent: string) {
-    return this.get('/payment/student', { idStudent })
-  }
-
-  static getByClass(idClass: string, month: number, year: number) {
-    return this.get('/payment/class', { idClass, month, year })
-  }
-
-  static create(body: Partial<IPayment>) {
-    return this.post('/payment', body)
-  }
-
-  static update(id: string, body: Partial<IPayment>) {
-    return this.patch(`/payment/${id}`, body)
-  }
-
-  static delete(id: string) {
-    return this.deleteData(`/payment/${id}`)
+  getByClass(idClass: string, month: number, year: number) {
+    return this.get('/class', { idClass, month, year })
   }
 }
+
+const PaymentAPI = new PaymentBase()
 
 export default PaymentAPI

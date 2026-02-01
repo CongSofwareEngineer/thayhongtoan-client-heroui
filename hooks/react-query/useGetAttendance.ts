@@ -11,10 +11,10 @@ const useGetAttendance = (query: IAttendanceFilter = {}, limit = PAGE_SIZE_LIMIT
     initialPageParam: 1,
     queryKey: [QUERY_KEY.Attendance, query],
     queryFn: async ({ pageParam = 1 }) => {
-      const response = await AttendanceAPI.getAll({ ...query, page: pageParam, limit })
+      const response = await AttendanceAPI.get('', { ...query, page: pageParam, limit })
 
       return {
-        data: (response?.data as IAttendance[]) || [],
+        data: response?.data || [],
         page: pageParam,
       }
     },

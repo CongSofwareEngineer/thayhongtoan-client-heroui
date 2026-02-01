@@ -11,10 +11,10 @@ const useGetTeacher = (query: ITeacherFilter = {}, limit = PAGE_SIZE_LIMIT) => {
     initialPageParam: 1,
     queryKey: [QUERY_KEY.Teacher, query],
     queryFn: async ({ pageParam = 1 }) => {
-      const response = await TeacherAPI.getAllTeachers({ ...query, page: pageParam, limit })
+      const response = await TeacherAPI.get('', { ...query, page: pageParam, limit })
 
       return {
-        data: (response?.data as ITeacher[]) || [],
+        data: response?.data || [],
         page: pageParam,
       }
     },

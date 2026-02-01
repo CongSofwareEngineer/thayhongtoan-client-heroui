@@ -15,7 +15,8 @@
     "send": "Gửi",
     "close": "Đóng",
     "noData": "Không có dữ liệu",
-    "loadMore": "Tải thêm"
+    "loadMore": "Tải thêm",
+    "loading": "Đang tải..."
   },
   "placeholder": {
     "enterAge": "Nhập tuổi học sinh",

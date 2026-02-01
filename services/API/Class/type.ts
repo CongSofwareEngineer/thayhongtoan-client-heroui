@@ -4,12 +4,14 @@ export interface IClass {
   _id?: string
   name: string
   price: number
-  startTime?: string | Date
-  endTime?: string | Date
   numberStudent: number
   note?: string
   idTeacher?: string | ITeacher
-  attributes?: Record<string, any>
+  attributes?: {
+    time?: string
+    dateStart?: string | Date
+    dateEnd?: string | Date
+  }
 }
 
 export interface IClassFilter {
