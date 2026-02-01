@@ -28,9 +28,9 @@ const ClassAdminScreen = () => {
       case 'teacher':
         return (item.idTeacher as ITeacher)?.name || 'No Teacher'
       case 'startTime':
-        return item.startTime ? new Date(item.startTime).toLocaleTimeString() : 'N/A'
-      case 'endTime':
-        return item.endTime ? new Date(item.endTime).toLocaleTimeString() : 'N/A'
+      //   return item.startTime ? new Date(item.startTime).toLocaleTimeString() : 'N/A'
+      // case 'endTime':
+      //   return item.endTime ? new Date(item.endTime).toLocaleTimeString() : 'N/A'
       default:
         return null
     }
