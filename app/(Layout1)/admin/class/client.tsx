@@ -32,7 +32,7 @@ const ClassAdminScreen = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [valueSearchDebounce])
 
-  const { data: classes = [], isLoading, isError, fetchNextPage, hasNextPage } = useGetClass(query)
+  const { data: classes = [], isLoading, fetchNextPage, hasNextPage } = useGetClass(query)
 
   const sortedItems = useMemo(() => {
     return [...classes].sort((a: IClass, b: IClass) => {
@@ -87,8 +87,6 @@ const ClassAdminScreen = () => {
     },
     [router, lang]
   )
-
-  if (isError) return <div className='text-danger text-center'>{translate('errors.serverError')}</div>
 
   return (
     <div className={cn('flex flex-col gap-6 w-full py-8')}>

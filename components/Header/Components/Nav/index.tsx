@@ -89,8 +89,8 @@ const Nav = () => {
             </DropdownTrigger>
             <DropdownMenu aria-label='Admin Actions'>
               {adminLinks.map((link) => (
-                <DropdownItem key={link.key} href={link.href} startContent={link.icon}>
-                  {translate(link.label as any)}
+                <DropdownItem key={link.key} startContent={link.icon}>
+                  <Link href={link.href}>{translate(link.label as any)}</Link>
                 </DropdownItem>
               ))}
             </DropdownMenu>
