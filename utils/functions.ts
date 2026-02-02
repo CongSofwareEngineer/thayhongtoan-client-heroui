@@ -20,10 +20,14 @@ export const isEmptyObject = (data: any) => {
   }
 }
 
-export const numberWithCommas = (x?: any) => {
+export const numberWithCommas = (x?: any, isVND?: boolean) => {
   if (!x) {
     return 0
   }
+  if (isVND) {
+    x = convertVND(x)
+  }
+
   const parts = x.toString().split('.')
 
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -274,5 +278,15 @@ export const isLink = (url: string) => {
     return url.startsWith('ipfs://') || url.startsWith('http://') || url.startsWith('https://')
   } catch {
     return false
+  }
+}
+
+export const convertVND = (value: string | number) => {
+  try {
+    value = value?.toString() + '000'
+
+    return value
+  } catch {
+    value
   }
 }

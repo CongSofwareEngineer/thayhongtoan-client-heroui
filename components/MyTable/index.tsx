@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from '@heroui/table'
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, SortDescriptor } from '@heroui/table'
 import { Spinner } from '@heroui/spinner'
 
 import MyButton from '../MyButton'
@@ -10,6 +10,7 @@ import useLanguage from '@/hooks/useLanguage'
 interface Column {
   key: string
   label: string
+  allowSorting?: boolean
 }
 
 interface MyTableProps {
@@ -20,9 +21,21 @@ interface MyTableProps {
   hasNextPage?: boolean
   onLoadMore?: () => void
   ariaLabel?: string
+  sortDescriptor?: SortDescriptor
+  onSortChange?: (descriptor: SortDescriptor) => void
 }
 
-const MyTable = ({ columns, items, renderCell, isLoading, hasNextPage, onLoadMore, ariaLabel = 'Data table' }: MyTableProps) => {
+const MyTable = ({
+  columns,
+  items,
+  renderCell,
+  isLoading,
+  hasNextPage,
+  onLoadMore,
+  ariaLabel = 'Data table',
+  sortDescriptor,
+  onSortChange,
+}: MyTableProps) => {
   const { translate } = useLanguage()
 
   return (
@@ -34,8 +47,16 @@ const MyTable = ({ columns, items, renderCell, isLoading, hasNextPage, onLoadMor
           th: 'bg-default-100 text-default-600 font-bold h-12',
           td: 'py-4 border-t border-default-100',
         }}
+        sortDescriptor={sortDescriptor}
+        onSortChange={onSortChange}
       >
-        <TableHeader columns={columns}>{(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}</TableHeader>
+        <TableHeader columns={columns}>
+          {(column) => (
+            <TableColumn key={column.key} allowsSorting={column.allowSorting}>
+              {column.label}
+            </TableColumn>
+          )}
+        </TableHeader>
         <TableBody
           emptyContent={!isLoading && translate('common.noData')}
           items={items}

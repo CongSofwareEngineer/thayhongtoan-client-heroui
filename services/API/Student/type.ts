@@ -1,5 +1,5 @@
 import { IClass } from '../Class/type'
-import { IRegister } from '../Register/type'
+import { IParent } from '../Parent/type'
 
 export enum StudentStatus {
   ACTIVE = 'active',
@@ -12,9 +12,8 @@ export interface IStudent {
   name: string
   age: number
   idClass: string | IClass
-  idRegister?: string | IRegister
   status: StudentStatus
-  numberPhoneParent: string
+  idParent?: IParent
 }
 
 export interface IStudentFilter {

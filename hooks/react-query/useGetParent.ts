@@ -3,22 +3,22 @@ import { useMemo } from 'react'
 
 import { PAGE_SIZE_LIMIT } from '@/constants/app'
 import { QUERY_KEY } from '@/constants/reactQuery'
-import StudentAPI from '@/services/API/Student'
-import { IStudent, IStudentFilter } from '@/services/API/Student/type'
+import ParentAPI from '@/services/API/Parent'
+import { IParent, IParentFilter } from '@/services/API/Parent/type'
 
-const useGetStudent = (query: IStudentFilter = {}, limit = PAGE_SIZE_LIMIT) => {
+const useGetParent = (query: IParentFilter = {}, limit = PAGE_SIZE_LIMIT) => {
   const { data, isLoading, isError, fetchNextPage, hasNextPage, refetch } = useInfiniteQuery({
     initialPageParam: 1,
-    queryKey: [QUERY_KEY.Student, query],
+    queryKey: [QUERY_KEY.Parent, query],
     queryFn: async ({ pageParam = 1 }) => {
-      const response = await StudentAPI.get('all', { ...query, page: pageParam, limit })
+      const response = await ParentAPI.get('all', { ...query, page: pageParam, limit })
 
       return {
         data: response?.data || [],
         page: pageParam,
       }
     },
-    getNextPageParam: (lastPage: { data: IStudent[]; page: number }) => {
+    getNextPageParam: (lastPage: { data: IParent[]; page: number }) => {
       if (lastPage?.data?.length === limit) {
         return lastPage.page + 1
       }
@@ -41,4 +41,4 @@ const useGetStudent = (query: IStudentFilter = {}, limit = PAGE_SIZE_LIMIT) => {
   }
 }
 
-export default useGetStudent
+export default useGetParent

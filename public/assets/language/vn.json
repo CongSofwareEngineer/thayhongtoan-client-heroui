@@ -97,6 +97,7 @@
     "studentManagement": "Quản lý học sinh",
     "teacherManagement": "Quản lý giáo viên",
     "startTime": "Thời gian bắt đầu",
+    "time": "Thời gian",
     "endTime": "Thời gian kết thúc",
     "amount": "Số tiền",
     "month": "Tháng",
@@ -109,7 +110,16 @@
     "status": "Trạng thái",
     "day": "Ngày",
     "name": "Tên",
-    "teacher": "Giáo viên"
+    "teacher": "Giáo viên",
+    "age": "Tuổi",
+    "parentName": "Tên phụ huynh",
+    "parentPhone": "SĐT phụ huynh",
+    "searchName": "Tìm kiếm tên",
+    "filterClass": "Lọc theo lớp",
+    "actions": "Hành động",
+    "note": "Ghi chú",
+    "parentManagement": "Quản lý phụ huynh",
+    "listStudent": "Danh sách học sinh"
   },
   "login":{
     "login": "Đăng nhập",

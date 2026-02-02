@@ -7,4 +7,5 @@ export enum QUERY_KEY {
   'Register' = 'Register',
   'Student' = 'Student',
   'Teacher' = 'Teacher',
+  'Parent' = 'Parent',
 }
