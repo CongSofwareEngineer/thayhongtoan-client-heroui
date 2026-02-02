@@ -89,24 +89,70 @@ const StudentAdminScreen = () => {
     }
   }, [])
 
+  // Check if router.push needs to handle idClass query param preservation if needed,
+  // but standard navigation usually doesn't strictly need it unless filtering persists.
+  // For now simple push is fine.
+
+  const renderMobileItem = React.useCallback(
+    (item: IStudent) => {
+      return (
+        <div className='flex flex-col gap-3'>
+          <div className='flex justify-between items-start'>
+            <div>
+              <h3 className='text-lg font-bold text-primary'>{item.name}</h3>
+              <p className='text-small text-default-500'>{(item?.idClass as IClass)?.name || 'N/A'}</p>
+            </div>
+            <div className='bg-primary/10 text-primary px-2 py-1 rounded-md text-small font-semibold'>{item.nickname || 'Không có biệt danh'}</div>
+          </div>
+
+          <div className='flex flex-col gap-1 text-small'>
+            <div className='flex justify-between'>
+              <span className='text-default-500'>{translate('admin.age') || 'Tuổi'}:</span>
+              <span>{item.age}</span>
+            </div>
+            {/* Add other fields as necessary */}
+          </div>
+
+          <div className='flex gap-2 mt-2 pt-2 border-t border-default-100'>
+            <MyButton
+              className='flex-1'
+              color='primary'
+              size='sm'
+              variant='flat'
+              onPress={() => {
+                // Define action or route if needed, e.g. edit student
+              }}
+            >
+              {translate('common.detail') || 'Chi tiết'}
+            </MyButton>
+          </div>
+        </div>
+      )
+    },
+    [translate]
+  )
+
   if (isError) return <div className='text-danger text-center'>{translate('errors.serverError')}</div>
 
   return (
     <div className={cn('flex flex-col gap-6 w-full py-8')}>
       <div className='flex justify-between items-center gap-4 flex-wrap'>
         <h1 className={cn('text-3xl font-bold')}>{translate('admin.studentManagement')}</h1>
-        <div className='flex gap-4'>
+        <div className='flex gap-4 items-center'>
           <MyInput placeholder={translate('admin.searchName') || 'Tìm kiếm tên'} value={searchName} onChange={(e) => handleSearch(e.target.value)} />
-          <MyInput
+          {/* <MyInput // Removed as per instruction
             placeholder={translate('admin.filterClass') || 'Lọc theo lớp'}
             value={filterClass}
             onChange={(e) => handleFilterClass(e.target.value)}
-          />
+          /> */}
           <Tooltip content={translate('common.noData') || 'Xóa bộ lọc'}>
             <MyButton isIconOnly color='warning' onPress={clearAll}>
               <TbFilterOff />
             </MyButton>
           </Tooltip>
+          <MyButton color='primary' onPress={() => {}}>
+            {translate('common.create') || 'Thêm mới'}
+          </MyButton>
         </div>
       </div>
 
@@ -115,9 +161,12 @@ const StudentAdminScreen = () => {
         columns={columns}
         hasNextPage={hasNextPage}
         isLoading={isLoading}
-        items={students}
+        items={sortedItems}
         renderCell={renderCell}
+        renderMobileItem={renderMobileItem}
+        sortDescriptor={sortDescriptor}
         onLoadMore={fetchNextPage}
+        onSortChange={setSortDescriptor}
       />
     </div>
   )

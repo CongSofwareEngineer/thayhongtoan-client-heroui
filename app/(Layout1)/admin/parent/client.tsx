@@ -63,6 +63,42 @@ const ParentAdminScreen = () => {
     }
   }, [])
 
+  const renderMobileItem = React.useCallback(
+    (item: IParent) => {
+      return (
+        <div className='flex flex-col gap-3'>
+          <div className='flex justify-between items-start'>
+            <div>
+              <h3 className='text-lg font-bold text-primary'>{item.name}</h3>
+              <p className='text-small text-default-500'>{item.phone}</p>
+            </div>
+          </div>
+
+          <div className='flex flex-col gap-1 text-small'>
+            <div className='flex justify-between'>
+              <span className='text-default-500'>{translate('admin.address') || 'Địa chỉ'}:</span>
+              <span className='text-right'>{item.address || 'N/A'}</span>
+            </div>
+            <div className='flex justify-between'>
+              <span className='text-default-500'>{translate('admin.note') || 'Ghi chú'}:</span>
+              <span className='text-right max-w-[200px] truncate'>{item.note || 'N/A'}</span>
+            </div>
+          </div>
+
+          <div className='flex gap-2 mt-2 pt-2 border-t border-default-100'>
+            <MyButton className='flex-1' color='primary' size='sm' variant='flat' onPress={() => {}}>
+              Sửa
+            </MyButton>
+            <MyButton className='flex-1' color='danger' size='sm' variant='flat' onPress={() => {}}>
+              Xóa
+            </MyButton>
+          </div>
+        </div>
+      )
+    },
+    [translate]
+  )
+
   if (isError) return <div className='text-danger text-center'>{translate('errors.serverError')}</div>
 
   return (
@@ -86,6 +122,7 @@ const ParentAdminScreen = () => {
         isLoading={isLoading}
         items={parents}
         renderCell={renderCell}
+        renderMobileItem={renderMobileItem}
         onLoadMore={fetchNextPage}
       />
     </div>

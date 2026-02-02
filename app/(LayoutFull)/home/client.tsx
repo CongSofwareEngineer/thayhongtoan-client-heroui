@@ -1,13 +1,19 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
+
 import InfoHome from './Component/InfoHome'
-import Register from './Component/Register'
 import SocialMedia from './Component/SocialMedia'
 
+import { MyButton } from '@/components'
 import MyImage from '@/components/MyImage'
 import { images } from '@/config/images'
+import useLanguage from '@/hooks/useLanguage'
 
 function HomeScreen() {
+  const { translate } = useLanguage()
+  const router = useRouter()
+
   return (
     <div className='w-full h-full gap-6 flex flex-col items-center justify-center '>
       <div className='w-full max-h-[calc(100vh-56px)] min-h-[calc(100vh-56px)] relative overflow-hidden'>
@@ -17,7 +23,15 @@ function HomeScreen() {
       </div>
       <InfoHome />
       <SocialMedia />
-      <Register />
+      <div className='w-full flex justify-center py-6'>
+        <MyButton
+          className='font-bold text-lg px-8 py-6 rounded-full shadow-lg bg-gradient-to-r from-pink-500 to-violet-500 text-white animate-bounce'
+          size='lg'
+          onPress={() => router.push('/register?idClass=697ece7d7e900925609a2acb')}
+        >
+          {translate('register.registerNow')}
+        </MyButton>
+      </div>
       <div className='w-full py-6  gap-5 max-w-[1200px] md:px-12 px-5 flex md:flex-row flex-col items-center justify-center'>
         <div className='flex flex-1 w-full items-center justify-center  '>
           <MyImage alt='banner' src={images.home.banner2} />

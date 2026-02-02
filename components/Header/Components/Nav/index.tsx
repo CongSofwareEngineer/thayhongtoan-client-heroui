@@ -60,6 +60,10 @@ const Nav = () => {
           {isMobile && <AiFillHome />}
           <span>{translate('header.home')}</span>
         </Link>
+        <Link className='flex items-center gap-2' href={'/class'}>
+          {isMobile && <MdOutlineClass />}
+          <span>{translate('header.admin.class')}</span>
+        </Link>
         <Link className='flex items-center gap-2' href={'/contact'}>
           {isMobile && <AiFillContacts />}
           <span>{translate('header.contact')}</span>

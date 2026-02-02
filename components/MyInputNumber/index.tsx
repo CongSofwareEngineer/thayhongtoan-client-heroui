@@ -19,7 +19,7 @@ const MyInputNumber = ({ ...props }: Props) => {
     }
 
     if (newValue?.startsWith('.') === true) {
-      newValue = ''
+      newValue = '0.'
     }
     if (newValue) {
       props?.onChange?.(Number(newValue))

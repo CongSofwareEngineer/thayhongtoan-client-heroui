@@ -13,11 +13,30 @@ import useGetClass from '@/hooks/react-query/useGetClass'
 import RegisterAPI from '@/services/API/Register'
 import { cn } from '@/utils/tailwind'
 import { showNotificationError, showNotificationSuccess } from '@/utils/notification'
+import useQuerySearch from '@/hooks/useQuerySearch'
 
 interface ClassSelectProps {
   value?: string
   onChange: (value: string) => void
   placeholder?: string
+}
+
+interface StudentData {
+  name: string
+  age?: number
+  idClass?: string
+}
+
+interface ParentData {
+  name: string
+  phone: string
+  address: string
+  note: string
+}
+
+interface RegisterFormData {
+  parent: ParentData
+  students: StudentData[]
 }
 
 const ClassSelect = ({ value, onChange, placeholder }: ClassSelectProps) => {
@@ -98,28 +117,12 @@ const ClassSelect = ({ value, onChange, placeholder }: ClassSelectProps) => {
   )
 }
 
-interface StudentData {
-  name: string
-  age?: number
-  idClass?: string
-}
-
-interface ParentData {
-  name: string
-  phone: string
-  address: string
-  note: string
-}
-
-interface RegisterFormData {
-  parent: ParentData
-  students: StudentData[]
-}
-
 const RegisterPageClient = () => {
   const { translate } = useLanguage()
   const router = useRouter()
+  const { query } = useQuerySearch<{ idClass: string }>()
 
+  const [errors, setErrors] = useState<any>({})
   const [formData, setFormData] = useState<RegisterFormData>({
     parent: {
       name: '',
@@ -131,14 +134,12 @@ const RegisterPageClient = () => {
       {
         name: '',
         age: undefined,
-        idClass: undefined,
+        idClass: query?.idClass || undefined,
       },
     ],
   })
 
-  console.log(formData)
-
-  const [errors, setErrors] = useState<any>({})
+  console.log({ formData })
 
   const onChangeParent = (field: keyof ParentData, value: any) => {
     setFormData((prev) => ({
@@ -356,6 +357,7 @@ const RegisterPageClient = () => {
                 <MyInputNumber
                   isRequired
                   errorMessage={errors.students?.[index]?.age}
+                  inputMode='numeric'
                   isInvalid={!!errors.students?.[index]?.age}
                   label={translate('admin.age')}
                   placeholder={translate('placeholder.enterAge')}
