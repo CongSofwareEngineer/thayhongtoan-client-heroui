@@ -131,6 +131,16 @@
     "email":"Email",
     "phone":"Số điện thoại",
     "age":"Tuổi học sinh",
-    "name":"Họ tên"
+    "name":"Họ tên",
+    "parentInfo": "Thông tin phụ huynh",
+    "studentInfo": "Thông tin học sinh",
+    "addStudent": "Thêm học sinh",
+    "registerNow": "Đăng ký ngay",
+    "selectClass": "Chọn lớp",
+    "selectedClass": "Đã chọn lớp",
+    "notFoundClass": "Không tìm thấy lớp",
+    "searchClass": "Tìm kiếm lớp...",
+    "studentName": "Họ tên học sinh",
+    "parentName": "Họ tên phụ huynh"
   }
 }

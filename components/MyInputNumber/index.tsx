@@ -7,12 +7,32 @@ type Props = Omit<NumberInputProps, 'onChange'> & {
   onChange?: (value: number) => void
 }
 const MyInputNumber = ({ ...props }: Props) => {
+  const onChangeValue = (value: number) => {
+    let newValue = value?.toString().replace(/,/g, '.') // Thay tất cả dấu phẩy thành dấu chấm
+
+    // Tìm vị trí dấu chấm đầu tiên
+    const firstDotIndex = newValue.indexOf('.')
+
+    if (firstDotIndex !== -1) {
+      // Nếu có dấu chấm, chỉ giữ lại dấu chấm đầu tiên và xóa các dấu chấm sau
+      newValue = newValue.substring(0, firstDotIndex + 1) + newValue.substring(firstDotIndex + 1).replace(/\./g, '')
+    }
+
+    if (newValue?.startsWith('.') === true) {
+      newValue = ''
+    }
+    if (newValue) {
+      props?.onChange?.(Number(newValue))
+    }
+  }
+
   return (
     <NumberInput
       {...props}
       classNames={{
         ...props?.classNames,
-        label: cn('!text-black font-bold text-base top-6 z-[2]', props?.classNames?.label),
+        base: cn('pt-[22px] group flex flex-col data-[has-helper=true]:mb-2', props?.classNames?.base),
+        label: cn('!text-black font-bold text-base top-[-12px] z-[2]', props?.classNames?.label),
         input: cn('!text-black', props?.classNames?.input),
         inputWrapper: cn(
           // '!ring-0  border-[1px] border-gray-300 !bg-white !text-black !ring-transparent',
@@ -29,7 +49,7 @@ const MyInputNumber = ({ ...props }: Props) => {
       onChange={(e: any) => {
         const value: any = e?.target?.value
 
-        props?.onChange?.(value)
+        onChangeValue(value)
       }}
     />
   )

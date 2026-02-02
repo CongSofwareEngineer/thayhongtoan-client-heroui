@@ -1,13 +1,29 @@
-export interface IRegister {
+export interface Parent {
   _id?: string
-  phoneNumber: string
-  name?: string
-  nameStudent?: string
-  gmail?: string
-  idChildren: string[]
+  name: string
+  phone: string
   address?: string
-  price: number
   note?: string
+}
+
+export enum StudentStatus {
+  active = 'active',
+  inactive = 'inactive',
+}
+
+export interface Student {
+  _id?: string
+  image?: string
+  name: string
+  age: number
+  idClass?: string
+  idParent?: string
+  status?: StudentStatus
+}
+
+export interface IRegister {
+  parent: Parent
+  students: Student[]
 }
 
 export interface IRegisterFilter {
