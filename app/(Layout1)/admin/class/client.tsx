@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 import { Tooltip } from '@heroui/tooltip'
 import { TbFilterOff } from 'react-icons/tb'
 import { SortDescriptor } from '@heroui/table'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { MyButton, MyInput, MyTable } from '@/components'
 import useGetClass from '@/hooks/react-query/useGetClass'
@@ -57,73 +57,67 @@ const ClassAdminScreen = () => {
     { key: 'actions', label: translate('admin.actions') || 'Hành động' },
   ]
 
-  const renderCell = useCallback(
-    (item: IClass, columnKey: string) => {
-      switch (columnKey) {
-        case 'name':
-          return item.name
-        case 'teacher':
-          return (item.idTeacher as ITeacher)?.name || 'Thầy Hồng'
-        case 'price':
-          return numberWithCommas(item.price, true) + ' VNĐ'
-        case 'numberStudent':
-          return `${item.numberStudent || 0} học sinh`
-        case 'time':
-          return item.attributes?.time || 'N/A'
-        case 'actions':
-          return (
-            <div className='flex items-center gap-2'>
-              <MyButton color='primary' size='sm' variant='flat' onPress={() => router.push(`/register?idClass=${item._id}`)}>
-                {translate('common.register') || 'Đăng ký'}
-              </MyButton>
-              <MyButton color='secondary' size='sm' variant='flat' onPress={() => router.push(`/admin/student?idClass=${item._id}`)}>
-                {translate('admin.listStudent') || 'DS Học sinh'}
-              </MyButton>
-            </div>
-          )
-        default:
-          return null
-      }
-    },
-    [router, lang]
-  )
-
-  const renderMobileItem = useCallback(
-    (item: IClass) => {
-      return (
-        <div className='flex flex-col gap-3'>
-          <div className='flex justify-between items-start'>
-            <div>
-              <h3 className='text-lg font-bold text-primary'>{item.name}</h3>
-              <p className='text-small text-default-500'>{(item.idTeacher as ITeacher)?.name || 'Thầy Hồng'}</p>
-            </div>
-            <div className='bg-primary/10 text-primary px-2 py-1 rounded-md text-small font-semibold'>{numberWithCommas(item.price, true)} VNĐ</div>
-          </div>
-
-          <div className='flex flex-col gap-1 text-small'>
-            <div className='flex justify-between'>
-              <span className='text-default-500'>{translate('admin.time') || 'Thời gian'}:</span>
-              <span>{item.attributes?.time || 'N/A'}</span>
-            </div>
-            <div className='flex justify-between'>
-              <span className='text-default-500'>{translate('admin.phone') || 'Số lượng'}:</span>
-              <span>{item.numberStudent || 0} học sinh</span>
-            </div>
-          </div>
-
-          <div className='flex gap-2 mt-2 pt-2 border-t border-default-100'>
-            <MyButton className='flex-1' color='primary' size='sm' variant='flat' onPress={() => router.push(`/register?idClass=${item._id}`)}>
+  const renderCell = (item: IClass, columnKey: string) => {
+    switch (columnKey) {
+      case 'name':
+        return item.name
+      case 'teacher':
+        return (item.idTeacher as ITeacher)?.name || 'Thầy Hồng'
+      case 'price':
+        return numberWithCommas(item.price, true) + ' VNĐ'
+      case 'numberStudent':
+        return `${item.numberStudent || 0} học sinh`
+      case 'time':
+        return item.attributes?.time || 'N/A'
+      case 'actions':
+        return (
+          <div className='flex items-center gap-2'>
+            <MyButton color='primary' size='sm' variant='flat' onPress={() => router.push(`/register?idClass=${item._id}`)}>
               {translate('common.register') || 'Đăng ký'}
             </MyButton>
-            <MyButton className='flex-1' color='secondary' size='sm' variant='flat' onPress={() => router.push(`/admin/student?idClass=${item._id}`)}>
+            <MyButton color='secondary' size='sm' variant='flat' onPress={() => router.push(`/admin/student?idClass=${item._id}`)}>
               {translate('admin.listStudent') || 'DS Học sinh'}
             </MyButton>
           </div>
+        )
+      default:
+        return null
+    }
+  }
+
+  const renderMobileItem = (item: IClass) => {
+    return (
+      <div className='flex flex-col gap-3'>
+        <div className='flex justify-between items-start'>
+          <div>
+            <h3 className='text-lg font-bold text-primary'>{item.name}</h3>
+            <p className='text-small text-default-500'>{(item.idTeacher as ITeacher)?.name || 'Thầy Hồng'}</p>
+          </div>
+          <div className='bg-primary/10 text-primary px-2 py-1 rounded-md text-small font-semibold'>{numberWithCommas(item.price, true)} VNĐ</div>
         </div>
-      )
-    },
-    [router, lang]
-  )
+
+        <div className='flex flex-col gap-1 text-small'>
+          <div className='flex justify-between'>
+            <span className='text-default-500'>{translate('admin.time') || 'Thời gian'}:</span>
+            <span>{item.attributes?.time || 'N/A'}</span>
+          </div>
+          <div className='flex justify-between'>
+            <span className='text-default-500'>{translate('admin.phone') || 'Số lượng'}:</span>
+            <span>{item.numberStudent || 0} học sinh</span>
+          </div>
+        </div>
+
+        <div className='flex gap-2 mt-2 pt-2 border-t border-default-100'>
+          <MyButton className='flex-1' color='primary' size='sm' variant='flat' onPress={() => router.push(`/register?idClass=${item._id}`)}>
+            {translate('common.register') || 'Đăng ký'}
+          </MyButton>
+          <MyButton className='flex-1' color='secondary' size='sm' variant='flat' onPress={() => router.push(`/admin/student?idClass=${item._id}`)}>
+            {translate('admin.listStudent') || 'DS Học sinh'}
+          </MyButton>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className={cn('flex flex-col gap-6 w-full py-8')}>
