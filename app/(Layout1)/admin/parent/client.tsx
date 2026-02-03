@@ -1,7 +1,6 @@
 'use client'
 import React from 'react'
 import { Tooltip } from '@heroui/tooltip'
-import { FunnelIcon } from '@heroicons/react/24/outline'
 
 import { MyButton, MyInput, MyTable } from '@/components'
 import useGetParent from '@/hooks/react-query/useGetParent'
@@ -10,6 +9,7 @@ import useLanguage from '@/hooks/useLanguage'
 import useDebounce from '@/hooks/useDebounce'
 import { IParent, IParentFilter } from '@/services/API/Parent/type'
 import { cn } from '@/utils/tailwind'
+import { FilterIcon } from '@/components/Icons/Filter'
 
 const ParentAdminScreen = () => {
   const { translate } = useLanguage()
@@ -109,7 +109,7 @@ const ParentAdminScreen = () => {
           <MyInput placeholder={translate('admin.searchName') || 'Tìm kiếm tên'} value={searchName} onChange={(e) => handleSearch(e.target.value)} />
           <Tooltip content={translate('common.noData') || 'Xóa bộ lọc'}>
             <MyButton isIconOnly color='warning' onPress={clearAll}>
-              <FunnelIcon />
+              <FilterIcon />
             </MyButton>
           </Tooltip>
         </div>

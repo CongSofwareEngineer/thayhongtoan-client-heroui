@@ -1,11 +1,11 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
-import { PhoneIcon } from '@heroicons/react/24/outline'
 
 import MyImage from '@/components/MyImage'
 import { images } from '@/config/images'
 import { LINK_CONTACT } from '@/constants/app'
 import useMedia from '@/hooks/useMedia'
+import { PhoneIcon } from '@/components/Icons/Phone'
 
 const SocialMedia: NextPage = () => {
   const { isMobile } = useMedia()

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Input, InputProps } from '@heroui/input'
-import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
+
+import { EyeSlashIcon } from '../Icons/EyeSlash'
+import { EyeIcon } from '../Icons/Eye'
 
 import { cn } from '@/utils/tailwind'
 

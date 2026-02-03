@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+
+import { XMarkIcon } from '../Icons/XMark'
 
 import { cn } from '@/utils/tailwind'
 import useModal2 from '@/hooks/useModal2'

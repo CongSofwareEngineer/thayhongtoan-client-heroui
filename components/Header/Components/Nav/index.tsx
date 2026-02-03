@@ -1,18 +1,6 @@
 import Link from 'next/link'
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@heroui/dropdown'
 import { useRouter } from 'next/navigation'
-import {
-  Bars4Icon,
-  ChatBubbleBottomCenterTextIcon,
-  CheckBadgeIcon,
-  Cog6ToothIcon,
-  CreditCardIcon,
-  HomeIcon,
-  HomeModernIcon,
-  InformationCircleIcon,
-  UserCircleIcon,
-  UserIcon,
-} from '@heroicons/react/24/outline'
 
 import useDrawer from '@/hooks/useDrawer'
 import useLanguage from '@/hooks/useLanguage'
@@ -22,6 +10,15 @@ import MyDropdown from '@/components/MyDropdown'
 import TeacherAPI from '@/services/API/Teacher'
 import MyButton from '@/components/MyButton'
 import { IconRegister } from '@/components/Icons/IconRegister'
+import { HomeIcon } from '@/components/Icons/Home'
+import { CheckBadgeIcon } from '@/components/Icons/CheckBadge'
+import { PaymentIcon } from '@/components/Icons/Payment'
+import { UserCircleIcon } from '@/components/Icons/UserCircle'
+import { MenuIcon } from '@/components/Icons/Menu'
+import { ClassIcon } from '@/components/Icons/Class'
+import { ContactIcon } from '@/components/Icons/Contact'
+import { InfoIcon } from '@/components/Icons/Info'
+import { CopyIcon } from '@/components/Icons/Copy'
 
 const Nav = () => {
   const { isMobile } = useMedia()
@@ -33,9 +30,9 @@ const Nav = () => {
   const adminLinks = [
     { key: 'attendance', label: 'header.admin.attendance', href: '/admin/attendance', icon: <CheckBadgeIcon /> },
     { key: 'class', label: 'header.admin.class', href: '/class', icon: <HomeIcon /> },
-    { key: 'payment', label: 'header.admin.payment', href: '/admin/payment', icon: <CreditCardIcon /> },
+    { key: 'payment', label: 'header.admin.payment', href: '/admin/payment', icon: <PaymentIcon /> },
     { key: 'register', label: 'header.admin.register', href: '/admin/register', icon: <IconRegister /> },
-    { key: 'student', label: 'header.admin.student', href: '/admin/student', icon: <UserIcon /> },
+    { key: 'student', label: 'header.admin.student', href: '/admin/student', icon: <UserCircleIcon /> },
     { key: 'teacher', label: 'header.admin.teacher', href: '/admin/teacher', icon: <UserCircleIcon /> },
   ]
 
@@ -77,7 +74,7 @@ const Nav = () => {
       >
         <div className='flex gap-3 items-center cursor-pointer'>
           <div>{user?.name}</div>
-          <Bars4Icon />
+          <MenuIcon />
         </div>
       </MyDropdown>
     )
@@ -91,15 +88,15 @@ const Nav = () => {
           <span>{translate('header.home')}</span>
         </Link>
         <Link className='flex items-center gap-2' href={'/class'}>
-          {isMobile && <HomeModernIcon />}
+          {isMobile && <ClassIcon />}
           <span>{translate('header.admin.class')}</span>
         </Link>
         <Link className='flex items-center gap-2' href={'/contact'}>
-          {isMobile && <ChatBubbleBottomCenterTextIcon />}
+          {isMobile && <ContactIcon />}
           <span>{translate('header.contact')}</span>
         </Link>
         <Link className='flex items-center gap-2' href={'/info'}>
-          {isMobile && <InformationCircleIcon />}
+          {isMobile && <InfoIcon />}
           <span>{translate('header.info')}</span>
         </Link>
         {user && (
@@ -118,7 +115,7 @@ const Nav = () => {
               <Dropdown>
                 <DropdownTrigger>
                   <div className='flex items-center gap-2 cursor-pointer hover:text-primary transition-colors'>
-                    <Cog6ToothIcon />
+                    <CopyIcon />
                     <span>Admin</span>
                   </div>
                 </DropdownTrigger>
@@ -141,7 +138,7 @@ const Nav = () => {
     return (
       <div className='flex gap-2 flex-1 items-center justify-end'>
         {renderContact()}
-        <Bars4Icon
+        <MenuIcon
           className='text-2xl cursor-pointer'
           onClick={() => {
             openDrawer({

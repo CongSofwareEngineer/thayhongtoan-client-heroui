@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react'
 import { Tooltip } from '@heroui/tooltip'
-import { FunnelIcon } from '@heroicons/react/24/outline'
 import { SortDescriptor } from '@heroui/table'
 
 import { MyButton, MyInput, MyTable } from '@/components'
@@ -13,6 +12,7 @@ import { IStudent } from '@/services/API/Student/type'
 import { IClass } from '@/services/API/Class/type'
 import { IStudentFilter } from '@/services/API/Student/type'
 import { cn } from '@/utils/tailwind'
+import { FilterIcon } from '@/components/Icons/Filter'
 
 const StudentAdminScreen = () => {
   const { translate } = useLanguage()
@@ -153,7 +153,7 @@ const StudentAdminScreen = () => {
           /> */}
           <Tooltip content={translate('common.noData') || 'Xóa bộ lọc'}>
             <MyButton isIconOnly color='warning' onPress={clearAll}>
-              <FunnelIcon />
+              <FilterIcon />
             </MyButton>
           </Tooltip>
           <MyButton color='primary' onPress={() => {}}>

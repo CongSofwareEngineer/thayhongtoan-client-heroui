@@ -10,7 +10,6 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "@heroicons/react": "^2.2.0",
     "@heroui/button": "2.2.21",
     "@heroui/checkbox": "^2.3.20",
     "@heroui/chip": "^2.2.24",

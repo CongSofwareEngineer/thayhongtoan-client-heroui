@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import { Popover, PopoverTrigger, PopoverContent } from '@heroui/popover'
 import { Listbox, ListboxItem } from '@heroui/listbox'
 import { ScrollShadow } from '@heroui/scroll-shadow'
-import { ChevronDownIcon, MagnifyingGlassIcon, PlusCircleIcon, TrashIcon } from '@heroicons/react/24/outline'
 
 import { MyButton, MyForm, MyInput, MyInputArea, MyInputNumber } from '@/components'
 import useLanguage from '@/hooks/useLanguage'
@@ -14,6 +13,10 @@ import RegisterAPI from '@/services/API/Register'
 import { cn } from '@/utils/tailwind'
 import { showNotificationError, showNotificationSuccess } from '@/utils/notification'
 import useQuerySearch from '@/hooks/useQuerySearch'
+import { PlusIcon } from '@/components/Icons/Plus'
+import { TrashIcon } from '@/components/Icons/Trash'
+import { SearchIcon } from '@/components/Icons/Search'
+import { ArrowDownIcon } from '@/components/Icons/ArrowDown'
 
 interface ClassSelectProps {
   value?: string
@@ -73,7 +76,7 @@ const ClassSelect = ({ value, onChange, placeholder }: ClassSelectProps) => {
           <span className='flex-1 text-small truncate'>
             {selectedClass ? selectedClass.name : value ? translate('register.selectedClass') : placeholder || translate('register.selectClass')}
           </span>
-          <ChevronDownIcon className='text-default-500' />
+          <ArrowDownIcon className='text-default-500' />
         </div>
       </PopoverTrigger>
       <PopoverContent className='w-[300px] p-0'>
@@ -83,7 +86,7 @@ const ClassSelect = ({ value, onChange, placeholder }: ClassSelectProps) => {
             isClearable
             placeholder={translate('register.searchClass')}
             size='sm'
-            startContent={<MagnifyingGlassIcon className='text-default-400' />}
+            startContent={<SearchIcon className='text-default-400' />}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onClear={() => setSearch('')}
@@ -323,7 +326,7 @@ const RegisterPageClient = () => {
         <div className='flex flex-col gap-4 w-full'>
           <div className='flex justify-between items-center'>
             <h2 className='text-xl font-bold'>{translate('register.studentInfo')}</h2>
-            <MyButton color='primary' size='sm' startContent={<PlusCircleIcon className='text-lg' />} onPress={addStudent}>
+            <MyButton color='primary' size='sm' startContent={<PlusIcon className='text-lg' />} onPress={addStudent}>
               {translate('register.addStudent')}
             </MyButton>
           </div>
