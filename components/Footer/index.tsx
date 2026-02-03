@@ -1,7 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { AiOutlineCopy } from 'react-icons/ai'
-import { CgMail } from 'react-icons/cg'
+import { ClipboardDocumentIcon, InboxIcon } from '@heroicons/react/24/outline'
 
 import MyImage from '../MyImage'
 
@@ -21,7 +20,7 @@ const Item = ({ icon, value, link }: any) => {
       <Link className='hover:underline cursor-pointer' href={link} target='_blank'>
         {value}
       </Link>
-      <AiOutlineCopy onClick={() => copyToClipboard(value)} />
+      <ClipboardDocumentIcon onClick={() => copyToClipboard(value)} />
     </div>
   )
 }
@@ -36,7 +35,7 @@ const Footer = () => {
               {/* 
               <Item icon={images.icons.iconNumberPhone} link={LINK_CONTACT.SDT} value={'Hồ Diên Công'} /> */}
 
-              <Item icon={<CgMail className='text-red-900' />} link={LINK_CONTACT.Mail} value={'hodienhong8392@gmail.com'} />
+              <Item icon={<InboxIcon className='text-red-900' />} link={LINK_CONTACT.Mail} value={'hodienhong8392@gmail.com'} />
               <Item icon={images.icons.iconZalo} link={LINK_CONTACT.Zalo} type={'zalo'} value={'+84344798392'} />
               <Item icon={images.icons.iconFacebook} link={LINK_CONTACT.FaceBook} value={'Facebook'} />
               {/* <Item icon={images.icons.icon} link={LINK_CONTACT.Github} value={'CongSofwareEngineer'} /> */}

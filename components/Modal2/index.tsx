@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { AiOutlineClose } from 'react-icons/ai'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 
 import { cn } from '@/utils/tailwind'
 import useModal2 from '@/hooks/useModal2'
@@ -111,7 +111,7 @@ const Modal2 = () => {
       >
         {modal2.showBtnClose && (
           <div className='absolute z-10 text-xl right-5 top-5 flex justify-end'>
-            <AiOutlineClose className='cursor-pointer' onClick={() => closeModal(true)} />
+            <XMarkIcon className='cursor-pointer' onClick={() => closeModal(true)} />
           </div>
         )}
         {modal2.title && <div className='text-medium mb-2 font-bold w-full'>{modal2.title}</div>}

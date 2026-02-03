@@ -6,6 +6,7 @@ import { Spinner } from '@heroui/spinner'
 import MyButton from '../MyButton'
 
 import useLanguage from '@/hooks/useLanguage'
+import useMedia from '@/hooks/useMedia'
 
 interface Column {
   key: string
@@ -39,12 +40,14 @@ const MyTable = ({
   onSortChange,
 }: MyTableProps) => {
   const { translate } = useLanguage()
+  const { isMobile } = useMedia()
 
   return (
     <div className='flex flex-col gap-4 w-full'>
       {/* Mobile View */}
-      {renderMobileItem && (
-        <div className='md:hidden flex flex-col gap-4'>
+
+      {renderMobileItem && isMobile && (
+        <div className='flex flex-col gap-4'>
           {items.map((item) => (
             <div key={item._id || item.key || JSON.stringify(item)} className='bg-content1 rounded-large p-4 shadow-small'>
               {renderMobileItem(item)}
@@ -60,38 +63,40 @@ const MyTable = ({
       )}
 
       {/* Desktop Table View */}
-      <div className={renderMobileItem ? 'hidden md:block' : ''}>
-        <Table
-          aria-label={ariaLabel}
-          classNames={{
-            wrapper: 'p-0 shadow-none border border-default-200 rounded-xl overflow-hidden',
-            th: 'bg-default-100 text-default-600 font-bold h-12',
-            td: 'py-4 border-t border-default-100',
-          }}
-          sortDescriptor={sortDescriptor}
-          onSortChange={onSortChange}
-        >
-          <TableHeader columns={columns}>
-            {(column) => (
-              <TableColumn key={column.key} allowsSorting={column.allowSorting}>
-                {column.label}
-              </TableColumn>
-            )}
-          </TableHeader>
-          <TableBody
-            emptyContent={!isLoading && translate('common.noData')}
-            items={items}
-            loadingContent={<Spinner label={translate('common.loading')} />}
-            loadingState={isLoading ? 'loading' : 'idle'}
+      {!isMobile && (
+        <div className='md:block'>
+          <Table
+            aria-label={ariaLabel}
+            classNames={{
+              wrapper: 'p-0 shadow-none border border-default-200 rounded-xl overflow-hidden',
+              th: 'bg-default-100 text-default-600 font-bold h-12',
+              td: 'py-4 border-t border-default-100',
+            }}
+            sortDescriptor={sortDescriptor}
+            onSortChange={onSortChange}
           >
-            {(item) => (
-              <TableRow key={item._id || item.key || JSON.stringify(item)}>
-                {(columnKey) => <TableCell>{renderCell(item, columnKey as string)}</TableCell>}
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </div>
+            <TableHeader columns={columns}>
+              {(column) => (
+                <TableColumn key={column.key} allowsSorting={column.allowSorting}>
+                  {column.label}
+                </TableColumn>
+              )}
+            </TableHeader>
+            <TableBody
+              emptyContent={!isLoading && translate('common.noData')}
+              items={items}
+              loadingContent={<Spinner label={translate('common.loading')} />}
+              loadingState={isLoading ? 'loading' : 'idle'}
+            >
+              {(item) => (
+                <TableRow key={item._id || item.key || JSON.stringify(item)}>
+                  {(columnKey) => <TableCell>{renderCell(item, columnKey as string)}</TableCell>}
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
+      )}
 
       {hasNextPage && (
         <div className='flex justify-center mt-4'>

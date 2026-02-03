@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
-import { FaSquarePhoneFlip } from 'react-icons/fa6'
+import { PhoneIcon } from '@heroicons/react/24/outline'
 
 import MyImage from '@/components/MyImage'
 import { images } from '@/config/images'
@@ -28,7 +28,7 @@ const SocialMedia: NextPage = () => {
         </Link>
 
         <Link href={LINK_CONTACT.SDT} target='_blank'>
-          <FaSquarePhoneFlip className='text-green-500 hover:scale-110' style={{ fontSize: 32 }} />
+          <PhoneIcon className='text-green-500 hover:scale-110' style={{ fontSize: 32 }} />
         </Link>
         <Link className='w-[90%]' href={LINK_CONTACT.FaceBook} target='_blank'>
           <MyImage

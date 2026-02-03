@@ -4,10 +4,10 @@ import type { ThemeProviderProps } from 'next-themes'
 
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
 import { useRouter } from 'next/navigation'
-import * as React from 'react'
+import { ReactNode } from 'react'
 
 export interface ProvidersProps {
-  children: React.ReactNode
+  children: ReactNode
   themeProps?: ThemeProviderProps
 }
 

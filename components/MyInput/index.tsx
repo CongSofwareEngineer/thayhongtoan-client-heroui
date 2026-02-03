@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Input, InputProps } from '@heroui/input'
-import { FiEye, FiEyeOff } from 'react-icons/fi'
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 
 import { cn } from '@/utils/tailwind'
 
@@ -12,7 +12,7 @@ const MyInput = ({ ...props }: InputProps) => {
       endContent={
         props.type === 'password' ? (
           <button className='focus:outline-none' type='button' onClick={() => setIsVisible(!isVisible)}>
-            {isVisible ? <FiEyeOff className='text-default-400' /> : <FiEye className='text-default-400' />}
+            {isVisible ? <EyeSlashIcon className='text-default-400' /> : <EyeIcon className='text-default-400' />}
           </button>
         ) : null
       }

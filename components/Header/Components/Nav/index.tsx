@@ -1,18 +1,18 @@
 import Link from 'next/link'
-import { AiFillContacts, AiFillHome, AiFillSetting } from 'react-icons/ai'
-import { FiAlignJustify } from 'react-icons/fi'
-import { IoIosInformationCircleOutline } from 'react-icons/io'
-import {
-  MdOutlineClass,
-  MdOutlinePayments,
-  MdOutlineHowToReg,
-  MdOutlinePeople,
-  MdOutlinePersonOutline,
-  MdOutlineFormatListBulleted,
-} from 'react-icons/md'
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@heroui/dropdown'
-import { IoMenu } from 'react-icons/io5'
 import { useRouter } from 'next/navigation'
+import {
+  Bars4Icon,
+  ChatBubbleBottomCenterTextIcon,
+  CheckBadgeIcon,
+  Cog6ToothIcon,
+  CreditCardIcon,
+  HomeIcon,
+  HomeModernIcon,
+  InformationCircleIcon,
+  UserCircleIcon,
+  UserIcon,
+} from '@heroicons/react/24/outline'
 
 import useDrawer from '@/hooks/useDrawer'
 import useLanguage from '@/hooks/useLanguage'
@@ -21,6 +21,7 @@ import useUser from '@/hooks/useUser'
 import MyDropdown from '@/components/MyDropdown'
 import TeacherAPI from '@/services/API/Teacher'
 import MyButton from '@/components/MyButton'
+import { IconRegister } from '@/components/Icons/IconRegister'
 
 const Nav = () => {
   const { isMobile } = useMedia()
@@ -30,12 +31,12 @@ const Nav = () => {
   const router = useRouter()
 
   const adminLinks = [
-    { key: 'attendance', label: 'header.admin.attendance', href: '/admin/attendance', icon: <MdOutlineFormatListBulleted /> },
-    { key: 'class', label: 'header.admin.class', href: '/class', icon: <MdOutlineClass /> },
-    { key: 'payment', label: 'header.admin.payment', href: '/admin/payment', icon: <MdOutlinePayments /> },
-    { key: 'register', label: 'header.admin.register', href: '/admin/register', icon: <MdOutlineHowToReg /> },
-    { key: 'student', label: 'header.admin.student', href: '/admin/student', icon: <MdOutlinePeople /> },
-    { key: 'teacher', label: 'header.admin.teacher', href: '/admin/teacher', icon: <MdOutlinePersonOutline /> },
+    { key: 'attendance', label: 'header.admin.attendance', href: '/admin/attendance', icon: <CheckBadgeIcon /> },
+    { key: 'class', label: 'header.admin.class', href: '/class', icon: <HomeIcon /> },
+    { key: 'payment', label: 'header.admin.payment', href: '/admin/payment', icon: <CreditCardIcon /> },
+    { key: 'register', label: 'header.admin.register', href: '/admin/register', icon: <IconRegister /> },
+    { key: 'student', label: 'header.admin.student', href: '/admin/student', icon: <UserIcon /> },
+    { key: 'teacher', label: 'header.admin.teacher', href: '/admin/teacher', icon: <UserCircleIcon /> },
   ]
 
   const handleLogout = () => {
@@ -76,7 +77,7 @@ const Nav = () => {
       >
         <div className='flex gap-3 items-center cursor-pointer'>
           <div>{user?.name}</div>
-          <IoMenu className='text-blue-700' style={{ fontSize: 20 }} />
+          <Bars4Icon />
         </div>
       </MyDropdown>
     )
@@ -86,19 +87,19 @@ const Nav = () => {
     return (
       <div className='flex md:flex-row flex-col gap-3 md:items-center'>
         <Link className='flex items-center gap-2' href={'/'}>
-          {isMobile && <AiFillHome />}
+          {isMobile && <HomeIcon />}
           <span>{translate('header.home')}</span>
         </Link>
         <Link className='flex items-center gap-2' href={'/class'}>
-          {isMobile && <MdOutlineClass />}
+          {isMobile && <HomeModernIcon />}
           <span>{translate('header.admin.class')}</span>
         </Link>
         <Link className='flex items-center gap-2' href={'/contact'}>
-          {isMobile && <AiFillContacts />}
+          {isMobile && <ChatBubbleBottomCenterTextIcon />}
           <span>{translate('header.contact')}</span>
         </Link>
         <Link className='flex items-center gap-2' href={'/info'}>
-          {isMobile && <IoIosInformationCircleOutline />}
+          {isMobile && <InformationCircleIcon />}
           <span>{translate('header.info')}</span>
         </Link>
         {user && (
@@ -117,7 +118,7 @@ const Nav = () => {
               <Dropdown>
                 <DropdownTrigger>
                   <div className='flex items-center gap-2 cursor-pointer hover:text-primary transition-colors'>
-                    <AiFillSetting />
+                    <Cog6ToothIcon />
                     <span>Admin</span>
                   </div>
                 </DropdownTrigger>
@@ -140,7 +141,7 @@ const Nav = () => {
     return (
       <div className='flex gap-2 flex-1 items-center justify-end'>
         {renderContact()}
-        <FiAlignJustify
+        <Bars4Icon
           className='text-2xl cursor-pointer'
           onClick={() => {
             openDrawer({

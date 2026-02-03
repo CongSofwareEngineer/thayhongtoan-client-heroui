@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Popover, PopoverTrigger, PopoverContent } from '@heroui/popover'
 import { Listbox, ListboxItem } from '@heroui/listbox'
 import { ScrollShadow } from '@heroui/scroll-shadow'
-import { IoAddCircleOutline, IoTrashOutline, IoSearchOutline, IoChevronDown } from 'react-icons/io5'
+import { ChevronDownIcon, MagnifyingGlassIcon, PlusCircleIcon, TrashIcon } from '@heroicons/react/24/outline'
 
 import { MyButton, MyForm, MyInput, MyInputArea, MyInputNumber } from '@/components'
 import useLanguage from '@/hooks/useLanguage'
@@ -73,7 +73,7 @@ const ClassSelect = ({ value, onChange, placeholder }: ClassSelectProps) => {
           <span className='flex-1 text-small truncate'>
             {selectedClass ? selectedClass.name : value ? translate('register.selectedClass') : placeholder || translate('register.selectClass')}
           </span>
-          <IoChevronDown className='text-default-500' />
+          <ChevronDownIcon className='text-default-500' />
         </div>
       </PopoverTrigger>
       <PopoverContent className='w-[300px] p-0'>
@@ -83,7 +83,7 @@ const ClassSelect = ({ value, onChange, placeholder }: ClassSelectProps) => {
             isClearable
             placeholder={translate('register.searchClass')}
             size='sm'
-            startContent={<IoSearchOutline className='text-default-400' />}
+            startContent={<MagnifyingGlassIcon className='text-default-400' />}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onClear={() => setSearch('')}
@@ -323,7 +323,7 @@ const RegisterPageClient = () => {
         <div className='flex flex-col gap-4 w-full'>
           <div className='flex justify-between items-center'>
             <h2 className='text-xl font-bold'>{translate('register.studentInfo')}</h2>
-            <MyButton color='primary' size='sm' startContent={<IoAddCircleOutline className='text-lg' />} onPress={addStudent}>
+            <MyButton color='primary' size='sm' startContent={<PlusCircleIcon className='text-lg' />} onPress={addStudent}>
               {translate('register.addStudent')}
             </MyButton>
           </div>
@@ -336,7 +336,7 @@ const RegisterPageClient = () => {
                   type='button'
                   onClick={() => removeStudent(index)}
                 >
-                  <IoTrashOutline className='text-xl' />
+                  <TrashIcon className='text-xl' />
                 </button>
               )}
 
