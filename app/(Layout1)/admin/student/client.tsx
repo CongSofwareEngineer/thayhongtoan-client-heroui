@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import { Tooltip } from '@heroui/tooltip'
-import { TbFilterOff } from 'react-icons/tb'
+import { FunnelIcon } from '@heroicons/react/24/outline'
 import { SortDescriptor } from '@heroui/table'
 
 import { MyButton, MyInput, MyTable } from '@/components'
@@ -153,7 +153,7 @@ const StudentAdminScreen = () => {
           /> */}
           <Tooltip content={translate('common.noData') || 'Xóa bộ lọc'}>
             <MyButton isIconOnly color='warning' onPress={clearAll}>
-              <TbFilterOff />
+              <FunnelIcon />
             </MyButton>
           </Tooltip>
           <MyButton color='primary' onPress={() => {}}>
