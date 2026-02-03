@@ -20,15 +20,6 @@ class BaseAPI<T, F> {
       url = this.router + url
       url = url.replace('//', '/')
     }
-    console.log({
-      config: {
-        ...config,
-        url,
-        body,
-        method,
-        baseURL: this.baseUrl,
-      },
-    })
 
     const response = await fetchData({
       ...config,
@@ -38,19 +29,21 @@ class BaseAPI<T, F> {
       baseURL: this.baseUrl,
     })
 
-    if ((response?.error?.response?.status === 401 || response?.messages === 'unauthorized') && urlOriginal !== '/auth/refresh') {
-      if (!BaseAPI.refreshPromise) {
-        BaseAPI.refreshPromise = this.post('/auth/refresh').finally(() => {
-          BaseAPI.refreshPromise = null
-        })
-      }
+    if (!config?.noRefreshToken) {
+      if ((response?.error?.response?.status === 401 || response?.messages === 'unauthorized') && urlOriginal !== '/auth/refresh') {
+        if (!BaseAPI.refreshPromise) {
+          BaseAPI.refreshPromise = this.post('/auth/refresh').finally(() => {
+            BaseAPI.refreshPromise = null
+          })
+        }
 
-      const refreshRes = await BaseAPI.refreshPromise
+        const refreshRes = await BaseAPI.refreshPromise
 
-      if (refreshRes?.messages === 'success') {
-        return this.request<R, B>(method, urlOriginal, body, config)
-      } else {
-        ObserverService.emit(OBSERVER_KEY.LogOut, false)
+        if (refreshRes?.data?.status) {
+          return await this.request<R, B>(method, urlOriginal, body, config)
+        } else {
+          ObserverService.emit(OBSERVER_KEY.LogOut, false)
+        }
       }
     }
 
@@ -67,8 +60,6 @@ class BaseAPI<T, F> {
     if (!url.startsWith('/')) {
       url = '/' + url
     }
-
-    console.log({ url })
 
     return this.request<R, B>(REQUEST_TYPE.GET, url, undefined, config)
   }

@@ -1,7 +1,8 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { Tooltip } from '@heroui/tooltip'
 import { TbFilterOff } from 'react-icons/tb'
+import { SortDescriptor } from '@heroui/table'
 
 import { MyButton, MyInput, MyTable } from '@/components'
 import useLanguage from '@/hooks/useLanguage'
@@ -21,6 +22,11 @@ const StudentAdminScreen = () => {
 
   const valueSearchDebounce = useDebounce(searchName, 500)
   const valueFilterClassDebounce = useDebounce(filterClass, 500)
+
+  const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({
+    column: 'price',
+    direction: 'ascending',
+  })
 
   React.useEffect(() => {
     updateQuery('name', valueSearchDebounce)
@@ -102,7 +108,7 @@ const StudentAdminScreen = () => {
               <h3 className='text-lg font-bold text-primary'>{item.name}</h3>
               <p className='text-small text-default-500'>{(item?.idClass as IClass)?.name || 'N/A'}</p>
             </div>
-            <div className='bg-primary/10 text-primary px-2 py-1 rounded-md text-small font-semibold'>{item.nickname || 'Không có biệt danh'}</div>
+            <div className='bg-primary/10 text-primary px-2 py-1 rounded-md text-small font-semibold'>{item.name || 'Không có biệt danh'}</div>
           </div>
 
           <div className='flex flex-col gap-1 text-small'>
@@ -123,7 +129,7 @@ const StudentAdminScreen = () => {
                 // Define action or route if needed, e.g. edit student
               }}
             >
-              {translate('common.detail') || 'Chi tiết'}
+              {translate('placeholder.detail') || 'Chi tiết'}
             </MyButton>
           </div>
         </div>
@@ -161,7 +167,7 @@ const StudentAdminScreen = () => {
         columns={columns}
         hasNextPage={hasNextPage}
         isLoading={isLoading}
-        items={sortedItems}
+        items={students}
         renderCell={renderCell}
         renderMobileItem={renderMobileItem}
         sortDescriptor={sortDescriptor}

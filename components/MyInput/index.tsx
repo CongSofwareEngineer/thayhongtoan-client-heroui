@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Input, InputProps } from '@heroui/input'
+import { FiEye, FiEyeOff } from 'react-icons/fi'
 
 import { cn } from '@/utils/tailwind'
 
 const MyInput = ({ ...props }: InputProps) => {
+  const [isVisible, setIsVisible] = useState(false)
+
   return (
     <Input
+      endContent={
+        props.type === 'password' ? (
+          <button className='focus:outline-none' type='button' onClick={() => setIsVisible(!isVisible)}>
+            {isVisible ? <FiEyeOff className='text-default-400' /> : <FiEye className='text-default-400' />}
+          </button>
+        ) : null
+      }
       {...props}
       // className={cn('data-[has-label=true]:mt-[30px]', props?.className)}
       classNames={{
@@ -21,6 +31,7 @@ const MyInput = ({ ...props }: InputProps) => {
         ),
       }}
       labelPlacement={props?.labelPlacement ?? 'outside'}
+      type={props.type === 'password' ? (isVisible ? 'text' : 'password') : props.type}
     />
   )
 }

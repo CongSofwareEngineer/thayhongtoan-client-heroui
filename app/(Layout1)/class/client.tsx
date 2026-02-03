@@ -14,11 +14,14 @@ import { numberWithCommas } from '@/utils/functions'
 import useQuerySearch from '@/hooks/useQuerySearch'
 import useDebounce from '@/hooks/useDebounce'
 import { cn } from '@/utils/tailwind'
+import useUser from '@/hooks/useUser'
 
 const ClassAdminScreen = () => {
   const { translate, lang } = useLanguage()
+  const { user } = useUser()
   const router = useRouter()
   const { query, updateQuery, clearAll } = useQuerySearch<IClassFilter>()
+
   const [searchName, setSearchName] = useState<string>(query.name || '')
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({
     column: 'price',
@@ -130,9 +133,11 @@ const ClassAdminScreen = () => {
               <TbFilterOff />
             </MyButton>
           </Tooltip>
-          <MyButton color='primary' onPress={() => {}}>
-            {translate('common.create') || 'Thêm mới'}
-          </MyButton>
+          {user && (
+            <MyButton color='primary' onPress={() => {}}>
+              {translate('common.create') || 'Thêm mới'}
+            </MyButton>
+          )}
         </div>
       </div>
 

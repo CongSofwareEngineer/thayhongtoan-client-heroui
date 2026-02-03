@@ -13,6 +13,7 @@ import { ToastContainer } from 'react-toastify'
 const Footer = dynamic(() => import('../Footer'))
 const LoadingFirstLoad = dynamic(() => import('../LoadingFirstLoad'))
 const Header = dynamic(() => import('../Header'))
+const PreLoadData = dynamic(() => import('../PreLoadData'))
 
 const MyModal = dynamic(() => import('../MyModal'), {
   ssr: false,
@@ -28,6 +29,7 @@ const Modal2 = dynamic(() => import('../Modal2'), {
 const ClientRender = ({ children }: PropsWithChildren) => {
   return (
     <Suspense>
+      <PreLoadData />
       <Header />
       <main className='light w-full h-full min-h-[calc(100vh-56px)]  '>
         {children}

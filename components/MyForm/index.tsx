@@ -48,6 +48,8 @@ const MyForm = ({ ...props }: Props) => {
           const formData = new FormData(e.currentTarget)
           const data = Object.fromEntries(formData)
 
+          props?.onSubmit?.(data)
+
           // If we are using react-hook-form, we want to call props.onSubmit(e).
           // But we don't know which one it is.
 

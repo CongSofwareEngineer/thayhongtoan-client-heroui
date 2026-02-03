@@ -11,6 +11,7 @@ import ReactQueryProvider from '@/components/ReactQueryProvider'
 import StyledComponentsRegistry from '@/components/StyledComponentsRegistry'
 import { robotoSlab } from '@/config/fonts'
 import { SITE_CONFIG } from '@/config/site'
+// import TeacherAPI from '@/services/API/Teacher'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
@@ -77,7 +78,11 @@ export const viewport: Viewport = {
   userScalable: false,
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  // const res = await TeacherAPI.infoMe()
+
+  // console.log({ res: res })
+
   return (
     <html suppressHydrationWarning lang='vi'>
       <head>

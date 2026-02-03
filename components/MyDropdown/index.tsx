@@ -18,7 +18,7 @@ const MyDropdown = ({ options, configDropdownMenu, configItem, children, ...prop
       <DropdownMenu {...configDropdownMenu} aria-label={configDropdownMenu?.['aria-label'] || 'Thay Hồng toán | Dropdown'}>
         {options.map((e) => {
           return (
-            <DropdownItem {...configItem} key={e.key}>
+            <DropdownItem data-hover {...configItem} key={e.key}>
               {e.label}
             </DropdownItem>
           )

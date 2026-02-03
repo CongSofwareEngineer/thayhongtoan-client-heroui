@@ -1,28 +1,48 @@
 'use client'
 import { ValidationErrors } from '@react-types/shared'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 import { FormLogin } from './type'
 
 import MyButton from '@/components/MyButton'
-import MyCheckbox from '@/components/MyCheckbox'
 import MyForm from '@/components/MyForm'
 import MyInput from '@/components/MyInput'
 import useLanguage from '@/hooks/useLanguage'
-import useMedia from '@/hooks/useMedia'
+import TeacherAPI from '@/services/API/Teacher'
+import useUser from '@/hooks/useUser'
+import { showNotificationError } from '@/utils/notification'
 
 const LoginScreen = () => {
-  const { isMobile } = useMedia()
   const { translate } = useLanguage()
+  const { setUser } = useUser()
+  const router = useRouter()
+
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState<FormLogin>({})
   const [errors, setErrors] = useState<ValidationErrors>({})
 
-  const onSubmit = (data: FormLogin) => {
-    console.log({ data })
+  const onSubmit = async (data: FormLogin) => {
+    try {
+      setIsLoading(true)
+      console.log({ data })
+      const res = await TeacherAPI.login(data as any)
+
+      console.log({ res })
+      if (res?.data) {
+        setUser(res.data)
+        router.push('/home')
+      } else {
+        showNotificationError(translate('warning.errorLogin'))
+      }
+    } catch (error) {
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
-    <div className='flex w-full h-full md:flex-row flex-col gap-3 items-center justify-center '>
+    <div className='flex w-full m-auto h-full md:flex-row flex-col gap-3 items-center justify-center '>
       <div className='flex  flex-1 items-center justify-center h-full'>
         <MyForm
           className='bg-white py-5 px-5 rounded-xl flex max-w-[500px] flex-1 flex-col overflow-auto gap-6'
@@ -32,6 +52,7 @@ const LoginScreen = () => {
           <p className='text-title text-center w-full'>{translate('login.login')}</p>
           <MyInput
             isRequired
+            disabled={isLoading}
             errorMessage={({ validationDetails }) => {
               if (validationDetails.valueMissing) {
                 return translate('errors.empty')
@@ -39,14 +60,15 @@ const LoginScreen = () => {
 
               return translate('errors.empty')
             }}
-            label={translate('name')}
-            name='username'
-            placeholder={translate('placeholder.enterName')}
+            label={'SDT'}
+            name='sdt'
+            placeholder={'SDT'}
             value={formData?.sdt}
             onChange={(e) => setFormData({ ...formData, sdt: e.target.value })}
           />
           <MyInput
             isRequired
+            disabled={isLoading}
             errorMessage={({ validationDetails }) => {
               if (validationDetails.valueMissing) {
                 return translate('errors.empty')
@@ -55,14 +77,14 @@ const LoginScreen = () => {
               return errors?.sdt
             }}
             label={translate('login.password')}
-            name='sdt'
+            name='password'
             placeholder={translate('placeholder.enterPassWord')}
             type='password'
             value={formData?.password}
+            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
           />
-          <MyCheckbox>{translate('login.saveLogin')}</MyCheckbox>
 
-          <MyButton className='w-full' type='submit'>
+          <MyButton className='w-full' isLoading={isLoading} type='submit'>
             {translate('login.login')}
           </MyButton>
         </MyForm>

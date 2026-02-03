@@ -10,6 +10,7 @@ export type ServerAPIReqType = {
   timeOut?: number
   isAuth?: boolean
   baseURL?: string
+  noRefreshToken?: boolean
 }
 
 export type ClientAPITypeParam = ServerAPIReqType
